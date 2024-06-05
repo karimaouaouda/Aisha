@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Analyse;
-use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable as User;
 use Illuminate\Auth\Access\Response;
 
 class AnalysePolicy

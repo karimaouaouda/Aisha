@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Actions\Filament\Auth\Patient\Login;
+use App\Actions\Filament\Auth\Patient\Register;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -25,6 +27,14 @@ class PatientPanelProvider extends PanelProvider
         return $panel
             ->id('patient')
             ->path('/workspace')
+            ->authGuard('patient')
+            ->login(Login::class)
+            ->registration(Register::class)
+            ->emailVerification()
+            ->passwordReset()
+            ->profile(isSimple: false)
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('5s')
             ->colors([
                 'primary' => Color::Amber,
             ])

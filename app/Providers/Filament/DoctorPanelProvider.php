@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Actions\Filament\Auth\Doctor\Register;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -25,6 +26,13 @@ class DoctorPanelProvider extends PanelProvider
         return $panel
             ->id('doctor')
             ->path('/doctor/workspace')
+            ->authGuard('doctor')
+            ->login()
+            ->registration(Register::class)
+            ->emailVerification()
+            ->passwordReset()
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('5s')
             ->colors([
                 'primary' => Color::Amber,
             ])

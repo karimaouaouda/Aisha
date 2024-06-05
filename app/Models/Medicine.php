@@ -9,13 +9,13 @@ class Medicine extends Model
 {
     use HasFactory;
 
-    
+
 
     protected $fillable = [
-        "name",
-        "count",
-        "method",
-        "quantity"
+        'name',
+        'count',
+        'method',
+        'quantity'
     ];
 
 

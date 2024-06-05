@@ -20,13 +20,21 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
 {
+    /**
+     * @throws \Exception
+     */
     public function panel(Panel $panel): Panel
     {
         return $panel
             ->default()
             ->id('admin')
             ->path('admin/workspace')
+            ->authGuard('admin')
             ->login()
+            ->emailVerification()
+            ->profile(isSimple: false)
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('5s')
             ->colors([
                 'primary' => Color::Amber,
             ])

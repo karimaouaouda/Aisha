@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\DoctorController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MLConntroller;
 use App\Http\Middleware\AuthSetter;
@@ -69,9 +71,29 @@ Route::middleware([AuthSetter::class])->group(function () {
 });
 
 
-Route::get('/settings', function(){
-    return view("amir.settings");
-});
+Route::resource('doctors', DoctorController::class)
+    ->except(
+        'create',
+        'edit',
+        'delete'
+    );
+
+Route::controller(DoctorController::class)
+    ->prefix('/doctors')
+    ->group(function() {
 
 
-Route::get('/test-ml', [MLConntroller::class, "index"]);
+
+    });
+
+
+
+//social routes here
+
+Route::controller(AuthController::class)->name("social.")->prefix("auth")
+    ->group(function () {
+
+        Route::get('redirect/{service}', "socialRedirect")->name("redirect");
+
+        Route::get('/{service}/callback', 'socialCallback')->name('callback');
+    });

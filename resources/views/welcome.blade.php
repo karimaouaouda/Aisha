@@ -34,7 +34,7 @@
                     <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="4">Testimonials</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="5">Faq</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="6">Contact</a> </li>
-                    <li class="nav-item"> <a class="btn btn-light text-dark" href="{{route('register')}}">start know</a> </li>
+                    <li class="nav-item"> <a class="btn btn-light text-dark" href="{{route('filament.patient.auth.register')}}">start know</a> </li>
                 </ul>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-12">
                         <div class="banner-text">
-                            <h2 class="white">Best App Website Template</h2>
+                            <h2 class="white"> {{ __('welcome.heading') }} </h2>
                             <h6 class="white">This awesome template designed by <a href="https://w3Template.com"
                                     target="_blank" rel="dofollow" class="weblink">W3 Template</a>.</h6>
                             <p class="banner-text white">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
