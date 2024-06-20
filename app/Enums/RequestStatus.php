@@ -2,9 +2,11 @@
 
 namespace App\Enums;
 
+use App\Traits\EnumTrait;
+
 enum RequestStatus : string
 {
-    use BaseEnum;
+    use EnumTrait;
 
     case WAITING = 'waiting';
 

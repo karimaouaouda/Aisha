@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Document Title, Description, and Author -->
-  <title>{{ env('APP_NAME') }} - AI Medical ASSISTANT</title>
-  <meta name="description" content="AI Medical Assistant.">
-  <meta name="author" content="Daya Azzeddine">
+  <title>Wave - Bootstrap 5 One Page Template</title>
+  <meta name="description" content="Wave is a Bootstrap 5 One Page Template.">
+  <meta name="author" content="BootstrapBrain">
 
   <!-- Favicon and Touch Icons -->
-  <link rel="icon" type="image/png" sizes="512x512" href="./logo.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./assets/favicon/favicon-512x512.png">
 
   <!-- Google Fonts Files -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@
     <nav id="scrollspyNav" class="navbar navbar-expand-lg bsb-tpl-bg-blue bsb-navbar bsb-navbar-hover bsb-navbar-caret bsb-tpl-navbar-sticky" data-bsb-sticky-target="#header">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img src="./logo.png" class="bsb-tpl-logo" alt="">
+          <img src="./assets/img/branding/wave-logo.svg" class="bsb-tpl-logo" alt="">
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -84,14 +84,10 @@
     <div class="container overflow-hidden">
       <div class="row gy-3 gy-lg-0 align-items-lg-center justify-content-lg-between">
         <div class="col-12 col-lg-6 order-1 order-lg-0">
-          <h1 class="display-3 fw-bolder mb-3">{{__('index.header.first_line')}}
-            <br><mark class="bsb-tpl-highlight bsb-tpl-highlight-blue"><span class="bsb-tpl-font-hw display-2 text-accent fw-normal">{{__('index.special_word')}}</span></mark> 
-            {{__('index.header.second_line')}}</h1>
-          <p class="fs-4 mb-5">{{__('index.header.subheading')}}</p>
+          <h1 class="display-3 fw-bolder mb-3">We provide easy <br><mark class="bsb-tpl-highlight bsb-tpl-highlight-blue"><span class="bsb-tpl-font-hw display-2 text-accent fw-normal">solutions</span></mark> for startups at affordable rates.</h1>
+          <p class="fs-4 mb-5">Our methods are straight, comfortable, and established to ensure evolution and acceleration.</p>
           <div class="d-grid gap-2 d-sm-flex">
-            <a href="{{route('filament.patient.auth.register')}}" type="button" class="btn btn-primary bsb-btn-3xl rounded-pill">
-              {{__('index.header.start_button')}}
-            </a>
+            <a href="{{ route('filament.patient.auth.login') }}" type="button" class="btn btn-primary bsb-btn-3xl rounded-pill">start now</a>
             <button type="button" class="btn btn-outline-primary bsb-btn-3xl rounded-pill">Buy Credits</button>
           </div>
         </div>

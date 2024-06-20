@@ -2,9 +2,11 @@
 
 namespace App\Enums;
 
+use App\Traits\EnumTrait;
+
 enum ChatTypes : string
 {
-    use BaseEnum;
+    use EnumTrait;
 
     case ALERT = 'alert';
 
