@@ -1,0 +1,17 @@
+the responses will be include between lines a hint to doctor speciality that can help him,
+
+if he have a doctor with that speciality :
+    we will redirect it to him from a recommendation button included in the
+    end of the response content.
+
+otherwise :
+    we will get the nearest and the high rated doctors with sae speciality predicted
+    and show them the in the end of content as a suggestions.
+
+    the user will be redirected to doctor profile
+
+    if doctor have set a limit and the limit riches:
+        the doctor will not shown in suggestions
+    else:
+        user can send request and we will tell the doctor that he comes from suggestions
+
