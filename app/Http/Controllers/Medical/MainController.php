@@ -46,6 +46,10 @@ class MainController extends Controller
         if( ($conversation_id = $this->doctor->hasConversationWith($patient) ) ){
             $chat = new Chat([
                 'conversation_id' => $conversation_id,
+                'source_conversationable_type' => get_class($this->doctor),
+                'source_conversationable_id' => $this->doctor->id,
+                'target_conversationable_type' => get_class($patient),
+                'target_conversationable_id' => $patient->id,
                 'type' => ChatTypes::ALERT->value,
                 'content' => "{$request->input('topic')}|{$request->input('alert_subject')}|{$request->input('alert_content')}",
                 'image' => null

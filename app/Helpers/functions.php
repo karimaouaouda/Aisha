@@ -2,39 +2,46 @@
 
 
 if( !function_exists('formatNormalMessage') ){
-    function formatMEssage(string $message, \App\Enums\ChatTypes $type) : string|array
+    function formatNormalMessage(string $message) : string|array
     {
-        $value = $type->value;
-
-        return match ($value){
-            \App\Enums\ChatTypes::NORMAL->value => formatAlertMEssage($message),
-            default => formatNormalMessage($message)
-        };
+        // استخدم تعبيراً عادياً للبحث عن النمط ***{str}***
+        $pattern = '/\*\*\*\{(.*?)}\*\*\*/';
+        // استبدل النمط بالنص المطلوب مع العلامة <b>
+        $replacement = '<b>$1</b>';
+        // استبدل النمط في النص
+        $convertedText = preg_replace($pattern, $replacement, $message);
+        return $convertedText;
     }
 }
 
-if( !function_exists('formatComplexeMessage') ){
-    function formatMEssage(string $message, \App\Enums\ChatTypes $type) : string|array
+if( !function_exists('formatComplexMessage') ){
+    function formatComplexMessage(string $message) : string|array
     {
-        $value = $type->value;
+        $parts = explode("|", $message);
 
-        return match ($value){
-            \App\Enums\ChatTypes::NORMAL->value => formatAlertMEssage($message),
-            default => formatNormalMessage($message)
-        };
+        $topic = $parts[0];
+
+        $title = $parts[1];
+
+        $content = $parts[2];
+
+        return [
+            'topic' => $topic,
+            'title' => $title,
+            'content' => $content
+        ];
     }
 }
 
 
 
 if( !function_exists('formatMessage') ){
-    function formatMessage(string $message, \App\Enums\ChatTypes $type) : string|array
+    function formatMessage(string $message,string $type) : string|array
     {
-        $value = $type->value;
 
-        return match ($value){
+        return match ($type){
             \App\Enums\ChatTypes::NORMAL->value => formatNormalMessage($message),
-            default => formatComplexeMessage($message)
+            default => formatComplexMessage($message)
         };
     }
 }

@@ -2,18 +2,25 @@
 
 namespace App\View\Components\Conversation;
 
-use App\Enums\ChatTypes;
+use App\Models\Base\Chat;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Alert extends Component
+class Message extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $title, public string $topic, public string $content)
+
+    public string $type;
+
+    public array|string $parts;
+
+    public function __construct(public Chat $chat)
     {
+        $this->type = $chat->type;
+        $this->parts = formatMessage($this->chat->content, $chat->type);
     }
 
     /**
@@ -21,6 +28,6 @@ class Alert extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.conversation.alert');
+        return view('components.conversation.message');
     }
 }

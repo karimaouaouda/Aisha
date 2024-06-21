@@ -4,10 +4,8 @@ namespace App\Filament\Doctor\Resources\PatientResource\Pages;
 
 use App\Enums\IOTTopics;
 use App\Filament\Doctor\Resources\PatientResource;
-use App\Filament\Doctor\Widgets\HeartBeatWidget;
 use App\Models\Auth\Patient;
 use Filament\Resources\Pages\Page;
-use Illuminate\Database\Eloquent\Model;
 
 class IOTDataVisualization extends Page
 {
@@ -28,17 +26,18 @@ class IOTDataVisualization extends Page
 
     protected function getViewData(): array
     {
-        $data = $this->record->iot_data()->where('topic', IOTTopics::HEART_BEATS->value)->get();
+        $data = $this->record->iot_data()->where('topic', IOTTopics::HEART_BEATS->value)->get(["data", "created_at"]);
 
-        $data->pluck(['data', 'created_at']);
 
         $data = $data->map(function($d){
-            $jsondata = json_decode($d->data, true);
-            $d->heart_beats = $jsondata['heart beats'];
-           return $d;
+            $json_data = json_decode($d->data, true);
+            $d->heart_beats = $json_data['heart beats'];
+            return $d;
         });
+
+
         return [
-            'heart_analytics' => $data->isEmpty() ? [] : analyzeHeartbeats($data->toArray()),
+            'heart_analytics' => $data->isEmpty() ? [] : analyseHeartBeats($data->toArray(), 30),
         ];
     }
 

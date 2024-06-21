@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth;
 
+use App\Traits\CanChat;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Exception;
 use Filament\Models\Contracts\FilamentUser;
@@ -23,6 +24,7 @@ class Doctor extends Authenticatable implements FilamentUser, MustVerifyEmail
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use CanChat;
 
     /**
      * The attributes that are mass assignable.

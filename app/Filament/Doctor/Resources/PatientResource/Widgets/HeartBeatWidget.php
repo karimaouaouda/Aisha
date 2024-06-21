@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Filament\Doctor\Widgets;
+namespace App\Filament\Doctor\Resources\PatientResource\Widgets;
 
 use App\Enums\IOTTopics;
 use App\Models\Auth\Patient;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Filament\Forms\Components\DatePicker;
-use Filament\Widgets\ChartWidget;
-use Flowframe\Trend\Trend;
-use Flowframe\Trend\TrendValue;
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
 class HeartBeatWidget extends ApexChartWidget
@@ -55,6 +52,7 @@ class HeartBeatWidget extends ApexChartWidget
         });
 
         $data = $data->toArray();
+
 
         return [
             'chart' => [

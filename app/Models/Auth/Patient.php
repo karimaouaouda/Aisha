@@ -4,7 +4,9 @@ namespace App\Models\Auth;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Illness;
+use App\Models\IotData;
 use App\Models\Message;
+use App\Traits\CanChat;
 use Exception;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -27,6 +29,7 @@ class Patient extends Authenticatable implements FilamentUser
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use CanChat;
 
     /**
      * The attributes that are mass assignable.
@@ -84,6 +87,11 @@ class Patient extends Authenticatable implements FilamentUser
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function iot_data(): HasMany
+    {
+        return $this->hasMany(IotData::class);
     }
 
     /**

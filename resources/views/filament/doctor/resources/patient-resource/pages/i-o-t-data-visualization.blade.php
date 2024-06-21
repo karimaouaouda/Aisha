@@ -11,7 +11,7 @@
                 follow patient heart beats
             </x-slot>
 
-            @livewire(App\Filament\Doctor\Widgets\HeartBeatWidget::class, ['patient' => $record], key($record->id))
+            @livewire(App\Filament\Doctor\Resources\PatientResource\Widgets\HeartBeatWidget::class, ['patient' => $record], key($record->id))
 
             <div class="w-full flex justify-between px-5 mt-4">
 
@@ -26,27 +26,19 @@
 
                 <div class="flex gap-2">
                     <span class="font-bold">
-                        heart beat variation
+                        heart beat average
                     </span>
                     <span>
-                        {{ $heart_analytics['heart_rate_variability'] ?? 'not set' }}
+                        {{ $heart_analytics['averageHeartRate'] ?? 'not set' }}
                     </span>
                 </div>
             </div>
-            @php
-                $all = 0;
-                foreach ($heart_analytics['heart_rate_zones'] as $zone => $arr) {
-                    $all = $all + count($arr);
-                }
-
-            @endphp
-            @foreach ($heart_analytics['heart_rate_zones'] as $zone => $arr)
+            @foreach ($heart_analytics['heart_rate_zones'] as $zone => $percentage)
                 @php
-                    $w = (count($arr) * 100) / $all . '%';
 
                     $color = match ($zone) {
-                        'moderate' => 'bg-orange-600',
-                        'vigorous' => 'bg-red-600',
+                        'Moderate' => 'bg-orange-600',
+                        'Vigorous' => 'bg-red-600',
                         default => 'bg-sky-600',
                     };
                 @endphp
@@ -56,14 +48,13 @@
                         <div>
                             <span
                                 class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-white {{ $color }}">
-                                {{ $zone }} [ {{ min(count($arr) > 0 ? $arr : [0]) }} -
-                                {{ max(count($arr) > 0 ? $arr : [0]) }} ]
+                                {{ $zone }} {{ $percentage }}%
                             </span>
                         </div>
                     </div>
 
                     <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                        <div style="width: {{ $w }}"
+                        <div style="width: {{ $percentage }}%"
                             class="shadow-none h-full flex flex-col text-center whitespace-nowrap text-white justify-center {{ $color }}">
                         </div>
                     </div>
@@ -83,57 +74,6 @@
                 </button>
             </div>
 
-
-
-        </x-filament::section>
-
-
-        <x-filament::section col-span="1" collapsible>
-
-            <x-slot name="heading">
-                heart beats
-            </x-slot>
-
-            <x-slot name="description">
-                follow patient heart beats
-            </x-slot>
-
-            @livewire(App\Filament\Doctor\Widgets\HeartBeatWidget::class, ['patient' => $record], key($record->id))
-
-
-
-
-        </x-filament::section>
-
-        <x-filament::section col-span="1" collapsible>
-
-            <x-slot name="heading">
-                heart beats
-            </x-slot>
-
-            <x-slot name="description">
-                follow patient heart beats
-            </x-slot>
-
-            @livewire(App\Filament\Doctor\Widgets\HeartBeatWidget::class, ['patient' => $record], key($record->id))
-
-
-
-
-        </x-filament::section>
-
-
-        <x-filament::section col-span="1" collapsible>
-
-            <x-slot name="heading">
-                heart beats
-            </x-slot>
-
-            <x-slot name="description">
-                follow patient heart beats
-            </x-slot>
-
-            @livewire(App\Filament\Doctor\Widgets\HeartBeatWidget::class, ['patient' => $record], key($record->id))
 
 
         </x-filament::section>

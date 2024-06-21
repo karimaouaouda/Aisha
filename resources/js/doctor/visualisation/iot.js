@@ -2,9 +2,10 @@ import Alpine from "alpinejs";
 import axios from 'axios';
 import Swal from "sweetalert2";
 
-const base_url = 'https://chatpy.test'
+const base_url = 'https://aisha.test'
 
 Alpine.data('appData', function(){
+
     return {
         async alertPatient($el){
             const patient = $el.dataset.patient

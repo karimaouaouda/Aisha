@@ -12,6 +12,11 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::controller(\App\Http\Controllers\Medical\MainController::class)
+    ->group(function(){
+        Route::post('/{patient}/alert', 'alert');
+    });
+
 Route::middleware([AuthSetter::class])->group(function () {
     Route::middleware([
         'auth:sanctum',
