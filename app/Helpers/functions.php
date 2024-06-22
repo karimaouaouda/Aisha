@@ -45,3 +45,22 @@ if( !function_exists('formatMessage') ){
         };
     }
 }
+
+
+if( ! function_exists('arrtotext') ){
+    function arrtotext(array $arr, $inner, $outer) : string
+    {
+        if($arr == []){
+            return "[]";
+        }
+
+        $text = "[";
+
+        foreach ($arr as $key => $value){
+            $text .= "{$key} {$inner} {$value} {$outer}\n";
+        }
+
+
+        return $text . "]";
+    }
+}

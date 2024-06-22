@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\DoctorController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MLConntroller;
 use App\Http\Middleware\AuthSetter;
@@ -10,6 +11,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
+});
+
+
+Route::get('test-text', function (){
+    $classifier = new \App\Services\Ai\TextEmotionService();
+
+    $emotions = $classifier->classify('i am very happy for you');
+
+    dd($emotions);
+});
+
+Route::get('test-post', function() {
+    dd(\App\Services\Ai\PostAnalysisService::detectFromText('i have a headache'));
 });
 
 Route::controller(\App\Http\Controllers\Medical\MainController::class)
@@ -59,7 +73,7 @@ Route::middleware([AuthSetter::class])->group(function () {
     Route::middleware(['auth'])
         ->group(function () {
 
-            Route::controller(MainController::class)
+            Route::controller(ChatController::class)
                 ->group(function () {
 
 

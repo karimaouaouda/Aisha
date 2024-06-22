@@ -17,14 +17,6 @@ use GeminiAPI\Resources\Parts\TextPart;
 class MainController extends Controller
 {
 
-    protected $chat_endpoint = 'D:\projects\pysharm\analyzer\chatgpt.py';
-    protected $pythonExe = "D:/projects/pysharm/analyzer/.venv/Scripts/python.exe";
-    protected $main = 'D:\projects\pysharm\analyzer\main.py';
-    protected $modelJson = 'D:\projects\pysharm\analyzer\predictor\AudioProcessing\model.json';
-    protected $modelArgs = 'D:\projects\pysharm\analyzer\predictor\AudioProcessing\Emotion_Voice_Detection_Model.h5';
-
-
-
     public function send(Request $request)
     {
         $message = $request->input('message');
@@ -32,18 +24,12 @@ class MainController extends Controller
         if ($request->hasFile("audio")) {
             $audio_data = $this->processAudio($request->file("audio"));
         } else {
+
             $audio_data = [
                 "filling" => "unknown",
                 "path" => "unknown"
             ];
         }
-
-
-
-
-        //$process = Process::run($this->pythonExe . " " . $this->chat_endpoint . " " . " \"$message\" ");
-
-        //$content = "your CHATGPT API TOKEN is not working please buy a new one";
 
 
         $client = new Client("AIzaSyAXCj72FC7XYaYZTSVqST7JFaua-yw9bnI");

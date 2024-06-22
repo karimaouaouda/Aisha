@@ -15,6 +15,36 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'models' => [
+
+        'post_analytics' => [
+            'name' => 'abhirajeshbhai/symptom-2-disease-net',
+            'url' => 'https://huggingface.co/models/abhirajeshbhai/symptom-2-disease-net',
+            'api_endpoint' => 'https://api-inference.huggingface.co/models/abhirajeshbhai/symptom-2-disease-net',
+            'api_key' => env('HUGGING_FACE_API_KEY')
+        ],
+
+        'text_emotion' => [
+            'name' => 'michellejieli/emotion_text_classifier',
+            'url' => 'https://huggingface.co/models/michellejieli/emotion_text_classifier',
+            'api_endpoint' => 'https://api-inference.huggingface.co/models/michellejieli/emotion_text_classifier',
+            'api_key' => env('HUGGING_FACE_API_KEY')
+        ],
+        'ner' => [
+            'name' => 'Clinical-AI-Apollo/Medical-NER',
+            'url' => 'https://huggingface.co/models/Clinical-AI-Apollo/Medical-NER',
+            'api_endpoint' => 'https://api-inference.huggingface.co/models/Clinical-AI-Apollo/Medical-NER',
+            'api_key' => env('HUGGING_FACE_API_KEY')
+        ],
+
+        'gemini' => [
+            'name' => 'Google Gemini',
+            'url' => 'https://gemini.google.com/',
+            'api_endpoint' => null,
+            'api_key' => env('GEMINI_API_KEY')
+        ]
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

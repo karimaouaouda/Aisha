@@ -2,64 +2,65 @@
 
 namespace App\Http\Controllers;
 
-use App\Chat;
+use App\Models\Message;
+use App\Services\Ai\GeminiService;
+use App\Services\Ai\TextEmotionService;
+use App\Services\Ai\VoiceEmotionService;
+use Filament\Widgets\StatsOverviewWidget\Stat;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+
+    public function __construct(
+        protected StatefulGuard $guard,
+    ){
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function create(){
+        return view('chat');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function send(Request $request): JsonResponse
     {
-        //
+        $request->validate([
+            'message' => ['required', 'min:2']
+        ]);
+
+        $message = $request->input('message');
+
+        if( $request->hasFile('audio') ){
+            $data = VoiceEmotionService::process(
+                $request->file('audio')
+            );
+        }else{
+            $emotions = TextEmotionService::classify($message);
+
+            $data = [
+                'filling' => array_keys($emotions)[0],
+                'path' => null
+            ];
+        }
+
+        $response = GeminiService::send($message);
+
+        $message = new Message([
+            "user_id" => auth()->user()->id,
+            "content" => $message,
+            "filling" => $audio_data['filling'],
+            "audio_path" => $audio_data['path'],
+            'gpt_response' => $content
+        ]);
+
+        $message->save();
+
+        return response()->json([
+            "content" => $content, //$process->output(),
+        ], 200);
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Chat $chat)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Chat $chat)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Chat $chat)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Chat $chat)
-    {
-        //
-    }
 }

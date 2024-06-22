@@ -55,6 +55,11 @@ class MakePostAnalysis extends Command
 
         $messages = $patient->messages()->get(['id', 'content']);
 
+        if( $messages->isEmpty() ){
+            $this->output->warning('user have no messages');
+            return true;
+        }
+
         $from_message = $messages->first()->id;
 
         $to_message = $messages->last()->id;

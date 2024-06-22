@@ -3,6 +3,7 @@
 
 namespace App\Services\Ai;
 
+use App\Services\Base\HuggingFaceService;
 use GeminiAPI\Client;
 use GeminiAPI\Resources\Parts\TextPart;
 use GeminiAPI\Responses\GenerateContentResponse;
@@ -13,13 +14,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 
-class EntityRecognitionService{
+class EntityRecognitionService extends HuggingFaceService{
 
-    protected string $api_endpoint;
-
-    public function __construct(){
-        $this->api_endpoint = Config::get('app.models.ner.api_endpoint');
-    }
 
     public static function getEntities($text): JsonResponse|array|null
     {
@@ -32,25 +28,7 @@ class EntityRecognitionService{
 
     public function entities($text): JsonResponse|array|null
     {
-        $token = env('HUGGING_FACE_API_KEY');
-
-        $headers = [
-            'Authorization' => "Bearer {$token}"
-        ];
-
-        $payload = [
-            'inputs' => $text
-        ];
-
-        try{
-            $response = Http::withHeaders($headers)
-                ->retry(3)
-                ->post($this->api_endpoint , $payload);
-        }catch(ConnectionException $e){
-            return response()->json([
-                'message' => 'connection failed : ' . $e->getMessage(),
-            ]);
-        }
+        $response = $this->requestData($text);
 
         return $this->extractEntities($response);
     }
@@ -77,4 +55,8 @@ class EntityRecognitionService{
     }
 
 
+    function setEndPoint(): void
+    {
+        $this->endpoint = Config::get('app.models.ner.api_endpoint');
+    }
 }
