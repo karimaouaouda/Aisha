@@ -17,7 +17,7 @@ class Message extends Component
 
     public array|string $parts;
 
-    public function __construct(public Chat $chat)
+    public function __construct(public Chat $chat, public bool $sent)
     {
         $this->type = $chat->type;
         $this->parts = formatMessage($this->chat->content, $chat->type);

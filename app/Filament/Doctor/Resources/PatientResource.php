@@ -93,7 +93,8 @@ class PatientResource extends Resource
             'create' => Pages\CreatePatient::route('/create'),
             'edit' => Pages\EditPatient::route('/{record}/edit'),
             'stats' => Pages\PatientStates::route('{record}/stats'),
-            'stats.iot' => Pages\IOTDataVisualization::route('{record}/stats/iot')
+            'stats.iot' => Pages\IOTDataVisualization::route('{record}/stats/iot'),
+            'treatments' => Pages\Treatments::route('/{record}/treatments')
         ];
     }
 }

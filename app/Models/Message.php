@@ -11,7 +11,7 @@ class Message extends Model
 
 
     protected $fillable = [
-        "user_id",
+        "patient_id",
         "content",
         "filling",
         'audio_path',

@@ -5,6 +5,7 @@ namespace App\Models\Auth;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Illness;
 use App\Models\IotData;
+use App\Models\Medicine;
 use App\Models\Message;
 use App\Traits\CanChat;
 use Exception;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -100,5 +102,20 @@ class Patient extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return $panel->getId() == 'patient';
+    }
+
+    public function treatments(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Medicine::class,
+            'medicine_assignements',
+        'patient_id',
+            relatedPivotKey: 'medicine'
+        );
+    }
+
+    public function routeNotificationForVonage(Notification $notification) : string
+    {
+        return '213558654521';
     }
 }

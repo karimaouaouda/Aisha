@@ -21,7 +21,7 @@ import { audioMessageTemplate, textMessageTemplate, errorTemplate, reflechingTem
         })
     }
 
-    
+
 
     function download(url) {
         let a = document.createElement("a")
@@ -60,7 +60,7 @@ import { audioMessageTemplate, textMessageTemplate, errorTemplate, reflechingTem
         let body = new FormData
         body.append("audio", blob)
         body.append("_token", document.getElementById("_token").value)
-        axios.post("https://chatpy.test/upload-audio", body, {
+        axios.post("https://aisha.test/upload-audio", body, {
             headers: {
                 'Content-Type': 'multipart/formdata'
             }
@@ -98,7 +98,7 @@ import { audioMessageTemplate, textMessageTemplate, errorTemplate, reflechingTem
 
                     mainContainer.innerHTML += textMessageTemplate(content)
 
-                    let url = "https://chatpy.test/message/send"
+                    let url = "https://aisha.test/message/send"
 
                     let data = new FormData
 
@@ -199,7 +199,7 @@ import { audioMessageTemplate, textMessageTemplate, errorTemplate, reflechingTem
 
             // Download link
             /* const link = container.appendChild(document.createElement('a'))
-    
+
             let waveblob = webmToWav(blob, function (wavblob) {
                 let newUrl = URL.createObjectURL(wavblob)
                 Object.assign(link, {

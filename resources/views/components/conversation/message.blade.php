@@ -1,5 +1,7 @@
 <div class="message-wrapper">
-    <div class="message flex flex-row-reverse relative gap-2" x-data="{ 'content': '{{ is_array($parts) ? $parts['content'] : $parts }}' }">
+    <div class="message flex relative gap-2" @class([
+    'flex-row-reverse' => !$sent
+]) x-data="{ 'content': '{{ is_array($parts) ? $parts['content'] : $parts }}' }">
         <div class="chat-pic h-10 w-10 rounded-full overflow-hidden border-sky-500 border-2">
             <img src="{{ cache('profile_picture') ?? asset('media/ai1.jfif') }}" class="w-full h-full"
                 alt="">

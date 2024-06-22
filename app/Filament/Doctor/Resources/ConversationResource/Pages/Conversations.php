@@ -1,20 +1,13 @@
 <?php
 
-namespace App\Filament\Patient\Resources\ConversationResource\Pages;
+namespace App\Filament\Doctor\Resources\ConversationResource\Pages;
 
-use App\Filament\Patient\Resources\ConversationResource;
-use App\Models\Auth\Doctor;
-use App\Models\Auth\Patient;
+use App\Filament\Doctor\Resources\ConversationResource;
 use Filament\Resources\Pages\Page;
-use Filament\Resources\Pages\ViewRecord;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 
 class Conversations extends Page
 {
     protected static string $resource = ConversationResource::class;
-
-    protected ?string $heading = 'inbox';
 
     public \App\Models\Base\Conversation $record;
 
@@ -24,14 +17,13 @@ class Conversations extends Page
     {
         $this->record = $record;
     }
+
     protected function getViewData(): array
     {
         return [
             'conversation' => $this->record,
-            'user' => auth('patient')->id(),
-            'other' => $this->record->getOtherParticipant(auth('patient')->user())
+            'user' => auth('doctor')->user(),
+            'other' => $this->record->getOtherParticipant(auth('doctor')->user())
         ];
     }
-
-
 }

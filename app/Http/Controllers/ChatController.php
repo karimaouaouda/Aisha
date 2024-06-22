@@ -8,6 +8,9 @@ use App\Services\Ai\TextEmotionService;
 use App\Services\Ai\VoiceEmotionService;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -19,7 +22,8 @@ class ChatController extends Controller
     ){
     }
 
-    public function create(){
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
         return view('chat');
     }
 
@@ -47,17 +51,17 @@ class ChatController extends Controller
         $response = GeminiService::send($message);
 
         $message = new Message([
-            "user_id" => auth()->user()->id,
+            "patient_id" => $this->guard->id(),
             "content" => $message,
-            "filling" => $audio_data['filling'],
-            "audio_path" => $audio_data['path'],
-            'gpt_response' => $content
+            "filling" => $data['filling'],
+            "audio_path" => $data['path'],
+            'gpt_response' => $response
         ]);
 
         $message->save();
 
         return response()->json([
-            "content" => $content, //$process->output(),
+            "content" => $response, //$process->output(),
         ], 200);
 
     }

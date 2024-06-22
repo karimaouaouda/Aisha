@@ -2,10 +2,14 @@
 
 namespace App\Providers\Filament;
 
+use App\Actions\Filament\Auth\Doctor\Profile;
 use App\Actions\Filament\Auth\Doctor\Register;
+use App\Filament\Doctor\Pages\Settings;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -32,6 +36,15 @@ class DoctorPanelProvider extends PanelProvider
             ->registration(Register::class)
             ->emailVerification()
             ->passwordReset()
+            ->profile(isSimple: false)
+            ->userMenuItems([
+                MenuItem::make()
+                    ->label('Settings')
+                    ->icon('heroicon-o-adjustments-horizontal')
+                    ->openUrlInNewTab(true)
+                    ->url('/settings')
+
+            ])
             ->databaseNotifications()
             ->databaseNotificationsPolling('5s')
             ->colors([
@@ -41,6 +54,7 @@ class DoctorPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Doctor/Pages'), for: 'App\\Filament\\Doctor\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+                Settings::class
             ])
             ->viteTheme('resources/css/app.css', 'build')
             ->discoverWidgets(in: app_path('Filament/Doctor/Widgets'), for: 'App\\Filament\\Doctor\\Widgets')

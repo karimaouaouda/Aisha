@@ -61,7 +61,7 @@
 
 
 
-        <div id="messages" class="messages-box h-[calc(100vh-8rem)] gap-2  w-full 
+        <div id="messages" class="messages-box h-[calc(100vh-8rem)] gap-2  w-full
                 overflow-auto py-2">
             <div class="start-discussion px-20 pt-4">
                 {{-- <div class="w-full h-40 bg-slate-200">
@@ -71,8 +71,8 @@
 
             @foreach ($conversation->chats as $message)
 
-                <x-conversation.message :chat="$message" />
-                
+                <x-conversation.message :sent="$other->id == $user->id" :chat="$message" />
+
             @endforeach
 
 

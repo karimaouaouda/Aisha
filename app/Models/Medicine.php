@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Auth\Patient;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,9 +24,9 @@ class Medicine extends Model
     {
         request();
         return $this->belongsToMany(
-            User::class,
+            Patient::class,
             "medicine_assignements",
-            'medicine_id',
+            'medicine',
             'doctor_id');
     }
 
