@@ -1,0 +1,26 @@
+{
+    "name": "karimaouaouda/laravel-social",
+    "description": "package that accelarte the developpement of full costumizable blog system includeing likes comments...",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Karimaouaouda\\LaravelSocial\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Karim Aouaouda",
+            "email": "110925809+karimaouaouda@users.noreply.github.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Karimaouaouda\\LaravelSocial\\Providers\\SocialServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
