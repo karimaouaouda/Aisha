@@ -32,7 +32,7 @@ Alpine.data('MedicalFollowButtonData', function(){
                 preConfirm: async (note) => {
                   try {
                     const url = `
-                      https://chatpy.test/doctors/${el.dataset.doctor}/request
+                      https://aisha.test/doctors/${el.dataset.doctor}/request
                     `;
                     const response = await axios.post(url, {
                         note : note

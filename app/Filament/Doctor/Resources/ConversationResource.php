@@ -20,7 +20,7 @@ class ConversationResource extends Resource
 {
     protected static ?string $model = Conversation::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'icon-messenger';
 
     protected static Authenticatable $doctor;
     public static function getEloquentQuery(): Builder

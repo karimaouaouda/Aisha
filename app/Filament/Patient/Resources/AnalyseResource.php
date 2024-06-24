@@ -17,7 +17,7 @@ class AnalyseResource extends Resource
 {
     protected static ?string $model = Analyse::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chart-pie';
 
     public static function form(Form $form): Form
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Filament\Facades\Filament;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
@@ -18,7 +19,7 @@ class AuthSetter
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if( auth()->check() ){
+        if( Filament::auth()->check() ){
 
             if( !Cache::has('profile_picture') ){
                 Cache::set('profile_picture', auth()->user()->profile_photo_url);
@@ -27,8 +28,8 @@ class AuthSetter
                 Cache::set('ai_profile_picture', asset('media/ai1.jfif'));
             }
 
-            
-            
+
+
         }else{
             if(Cache::has('profile_picture')){
                 Cache::delete('profile_picture');

@@ -462,8 +462,8 @@
                                     <img style="height: 16rem" class="img-fluid" loading="lazy" src="./images/karim.jpg"
                                         alt="">
                                     <figcaption class="m-0 p-4">
-                                        <h4 class="mb-1">Karim Aouada</h4>
-                                        <p class="text-secondary mb-0">Chief Financial Officer (CFO)</p>
+                                        <h4 class="mb-1">Karim Aouaouda</h4>
+                                        <p class="text-secondary mb-0">Software Engineer and ( CEO )</p>
                                     </figcaption>
                                 </figure>
                             </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Patient\Resources\AppointmentResource\Pages;
+namespace App\Filament\Client\Resources\AppointmentResource\Pages;
 
 use App\Filament\Client\Resources\AppointementResource;
 use Filament\Actions;

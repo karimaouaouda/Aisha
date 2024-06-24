@@ -23,11 +23,11 @@ abstract class HuggingFaceService implements HuggingFaceServiceInterface
      * @throws NoKeyValue
      */
     public function __construct(){
-        if( env('HUGGING_FACE_API_KEY') == null ){
+        if( ($key = Config::get('app.hugging_face_key', null)) == null ){
             throw new NoKeyValue('no value for ' . 'HUGGING_FACE_API_KEY' );
         }
 
-        $this->api_key = env('HUGGING_FACE_API_KEY');
+        $this->api_key = $key;
 
         $this->headers = [
             'Authorization' => "Bearer {$this->api_key}"

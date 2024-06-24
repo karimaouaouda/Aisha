@@ -20,7 +20,7 @@ class PatientResource extends Resource
 {
     protected static ?string $model = Patient::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
 
     public static function getEloquentQuery(): Builder
@@ -94,7 +94,8 @@ class PatientResource extends Resource
             'edit' => Pages\EditPatient::route('/{record}/edit'),
             'stats' => Pages\PatientStates::route('{record}/stats'),
             'stats.iot' => Pages\IOTDataVisualization::route('{record}/stats/iot'),
-            'treatments' => Pages\Treatments::route('/{record}/treatments')
+            'treatments' => Pages\Treatments::route('/{record}/treatments'),
+            'requests' => Pages\MedicalRequests::route('requests'),
         ];
     }
 }

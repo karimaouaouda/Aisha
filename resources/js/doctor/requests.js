@@ -2,7 +2,7 @@ import Alpine from "alpinejs";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const base_url = "https://chatpy.test" //import.env.VITE_BASE_URL
+const base_url = "https://aisha.test" //import.env.VITE_BASE_URL
 
 Alpine.data('AppData', function () {
 

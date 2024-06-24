@@ -59,9 +59,8 @@ class ChatController extends Controller
         ]);
 
         $message->save();
-
         return response()->json([
-            "content" => $response, //$process->output(),
+            "content" => formatNormalMessage($response), //$process->output(),
         ], 200);
 
     }

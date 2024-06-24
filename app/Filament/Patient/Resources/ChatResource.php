@@ -16,7 +16,11 @@ class ChatResource extends Resource
 {
     protected static ?string $model = Message::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'icon-robot';
+
+    protected static ?string $label = "MedGpt";
+
+
 
     public static function form(Form $form): Form
     {

@@ -28,7 +28,8 @@ return new class extends Migration
 
             $table->text('reject_reason')->nullable();
 
-            $table->enum('status', RequestStatus::values());
+            $table->enum('status', RequestStatus::values())
+                    ->default(RequestStatus::WAITING->value);
 
             $table->timestamps();
         });

@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('pharmacies', function (Blueprint $table) {
             $table->id();
-            $table->string('owner_name');
-            $table->string('cabinet_name');
+            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('fix_number');
-            $table->json('work_options');
+            $table->string('fix_number')->nullable();
+            $table->json('work_options')->nullable();
             $table->rememberToken();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();

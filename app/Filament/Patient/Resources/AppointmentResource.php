@@ -6,7 +6,10 @@ use App\Enums\AuthRoles;
 use App\Filament\Patient\Resources\AppointmentResource\Pages;
 use App\Filament\Patient\Resources\AppointmentResource\RelationManagers;
 use App\Models\Appointment;
+use App\Models\Auth\Doctor;
+use App\Models\Auth\Patient;
 use App\Models\User;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -22,12 +25,13 @@ class AppointmentResource extends Resource
 {
     protected static ?string $model = Appointment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where("patient_id", "=", auth()->user()->id);
+        return Appointment::query()
+                                ->where("patient_id", "=", Filament::auth()->id());
     }
 
     public static function form(Form $form): Form
@@ -35,28 +39,24 @@ class AppointmentResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Hidden::make('patient_id')
-                    ->default(Auth::user()->id),
+                    ->default(Filament::auth()->id()),
                 Forms\Components\Hidden::make('requester')
                     ->default(AuthRoles::PATIENT->value),
 
                 Forms\Components\Select::make('doctor_id')
-                    ->relationship('doctor')
-                    ->getSearchResultsUsing(function(string $query){
-                        return DB::table('users')
-                                    ->join('doctors', 'users.id', '=', 'doctors.user_id' )
-                                    ->select('users.*', 'doctors.*')
-                                    ->where('name', 'LIKE', "%{$query}%")
-                                    ->pluck('name', 'user_id');
+                    ->getSearchResultsUsing(function(){
+                        return Filament::auth()->user()->doctors->pluck('name', 'id');
                     })
+                    ->placeholder('select doctor')
+                    ->selectablePlaceholder(false)
                     ->searchable()
                     ->label('with doctor')
                     ->required(),
 
-                Forms\Components\DateTimePicker::make('time')
-                    ->label('appointment at')
-                    ->minDate(now()->addDay())
-                    ->required(),
-
+                Forms\Components\Textarea::make('reason')
+                    ->columnSpan(2)
+                    ->label('appointment reason')
+                    ->placeholder('i ask for appointment because ...')
             ]);
     }
 
@@ -102,7 +102,7 @@ class AppointmentResource extends Resource
     {
         return [
             'index' => Pages\ListAppointments::route('/'),
-            'create' => Pages\CreateAppointment::route('/create'),
+            'create' => Pages\CreateAppointment::route('/ask'),
             'edit' => Pages\EditAppointment::route('/{record}/edit'),
         ];
     }

@@ -20,7 +20,7 @@ class AppointmentResource extends Resource
 {
     protected static ?string $model = Appointment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
     public static function getEloquentQuery(): Builder
     {
@@ -31,8 +31,10 @@ class AppointmentResource extends Resource
     {
         return $form
             ->schema([
+
                 Forms\Components\Hidden::make('doctor_id')
                     ->default(Auth::user()->id),
+
                 Forms\Components\Hidden::make('requester')
                     ->default(AuthRoles::DOCTOR->value),
 

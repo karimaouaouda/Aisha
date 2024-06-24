@@ -97,14 +97,17 @@ Route::resource('doctors', DoctorController::class)
         'delete'
     );
 
-Route::controller(DoctorController::class)
-    ->prefix('/doctors')
-    ->group(function() {
+Route::get('/s', function(){
+    $t = "These symptoms could indicate an underlying medical condition, such as: * **Hyperthyroidism:** An overactive thyroid gland can cause increased appetite, weight loss, sleep disturbances, and anxiety. * **Diabetes:** Untreated diabetes can lead to excessive thirst and hunger, weight loss, and difficulty sleeping. * **Anxiety disorder:** Anxiety can trigger increased eating, sleep problems, and feelings of restlessness. * **Inflammatory bowel disease (IBD):** Conditions like ulcerative colitis and Crohn's disease can cause increased appetite, weight loss, and sleep disturbances. * **Cancer:** In some cases, certain types of cancer can lead to unexplained weight loss, appetite changes, and sleep issues. It's important to consult a healthcare professional to determine the cause of your symptoms and receive appropriate treatment. They may recommend: * **Physical exam:** To check for signs and symptoms of underlying conditions. * **Blood tests:** To assess thyroid function, blood sugar levels, and inflammatory markers. * **Imaging tests:** Such as X-rays or CT scans, to rule out structural abnormalities or masses. * **Referral to a specialist:** Depending on the suspected diagnosis, they may refer you to an endocrinologist, gastroenterologist, or mental health professional for further evaluation and treatment. Early detection and treatment of an underlying medical condition is crucial for improving your health and well-being.";
+    dd(formatNormalMessage($t));
+});
 
+Route::controller(\App\Http\Controllers\Medical\FollowingController::class)
+    ->group(function(){
+        Route::post('doctors/{doctor}/request', 'sendFollowRequest');
 
-
+        Route::post('following-requests/{patient}/accept', 'acceptRequest');
     });
-
 
 
 //social routes here

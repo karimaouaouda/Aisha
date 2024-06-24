@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Gate;
 class FollowingController extends Controller
 {
 
-    public function sendFollowRequest(Doctor $doctor) : mixed
+    public function sendFollowRequest(Doctor $doctor, Request $request) : mixed
     {
+        $request->validate([
+            'note' => ['required']
+        ]);
+
         $patient = auth('patient')->user();
 
         $authorize = Gate::inspect('send-request', $doctor);
@@ -27,7 +31,7 @@ class FollowingController extends Controller
             ], 200);
         }
 
-        return $patient->medicalFollow($doctor);
+        return $patient->medicalFollow($doctor, $request->input('note'));
     }
 
     public function acceptRequest(Patient $patient): JsonResponse

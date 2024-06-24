@@ -24,7 +24,7 @@ class PharmacyPanelProvider extends PanelProvider
     {
         return $panel
             ->id('pharmacy')
-            ->path('pharmacy')
+            ->path('pharmacy/workspace')
             ->authGuard('pharmacy')
             ->registration()
             ->login()

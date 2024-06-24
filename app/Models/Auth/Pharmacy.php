@@ -30,12 +30,10 @@ class Pharmacy extends Authenticatable implements FilamentUser
      * @var array<int, string>
      */
     protected $fillable = [
-        'owner_name',
-        'cabinet_name',
+        'name',
         'email',
         'password',
-        'fix_number',
-        'work_options'
+        'fix_number'
     ];
 
     /**

@@ -5,9 +5,11 @@ namespace App\Models\Auth;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Illness;
 use App\Models\IotData;
+use App\Models\MedicalReport;
 use App\Models\Medicine;
 use App\Models\Message;
 use App\Traits\CanChat;
+use App\Traits\Patient\CanMedicalFollow;
 use Exception;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -32,6 +34,7 @@ class Patient extends Authenticatable implements FilamentUser
     use Notifiable;
     use TwoFactorAuthenticatable;
     use CanChat;
+    use CanMedicalFollow;
 
     /**
      * The attributes that are mass assignable.
@@ -85,6 +88,11 @@ class Patient extends Authenticatable implements FilamentUser
         return $this->belongsToMany(Illness::class, "user_illnesses");
     }
 
+    public function medicalReports(): HasMany
+    {
+        return $this->hasMany(MedicalReport::class);
+    }
+
 
     public function messages(): HasMany
     {
@@ -111,6 +119,14 @@ class Patient extends Authenticatable implements FilamentUser
             'medicine_assignements',
         'patient_id',
             relatedPivotKey: 'medicine'
+        );
+    }
+
+    public function doctors(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Doctor::class,
+            'medical_followings'
         );
     }
 

@@ -19,7 +19,8 @@
         "leandrocfe/filament-apex-charts": "^3.1",
         "livewire/livewire": "^3.0",
         "php-ai/php-ml": "^0.10.0",
-        "php-mqtt/laravel-client": "^1.5"
+        "php-mqtt/laravel-client": "^1.5",
+        "karimaouaouda/laravel-social" : "dev-main"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -31,6 +32,15 @@
         "pestphp/pest-plugin-laravel": "^2.0",
         "spatie/laravel-ignition": "^2.4"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/karimaouaouda/laravel-social",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
     "autoload": {
         "psr-4": {
             "App\\": "app/",

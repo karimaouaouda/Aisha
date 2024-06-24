@@ -20,7 +20,6 @@ class MedicalRequestPolicy
 
     public function send(Patient $patient, Doctor $doctor): Response
     {
-
         $d = DB::table('medical_following_requests')
                     ->where('patient_id' , '=', $patient->id)
                     ->where('doctor_id', '=', $doctor->id)

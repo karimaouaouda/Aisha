@@ -1,15 +1,24 @@
 <?php
 
 
+use Illuminate\Support\Facades\Config;
+
 if( !function_exists('formatNormalMessage') ){
     function formatNormalMessage(string $message) : string|array
     {
         // استخدم تعبيراً عادياً للبحث عن النمط ***{str}***
-        $pattern = '/\*\*\*\{(.*?)}\*\*\*/';
+        $pattern = '/\*\*(.*?)\*\*/';
         // استبدل النمط بالنص المطلوب مع العلامة <b>
         $replacement = '<b>$1</b>';
         // استبدل النمط في النص
         $convertedText = preg_replace($pattern, $replacement, $message);
+
+        $pattern = '/\s\*\s/';
+
+        $replacement = '<br/>';
+
+        $convertedText = preg_replace($pattern, $replacement, $convertedText);
+
         return $convertedText;
     }
 }
@@ -62,5 +71,21 @@ if( ! function_exists('arrtotext') ){
 
 
         return $text . "]";
+    }
+}
+
+if( ! function_exists('is_anyone_auth') ){
+    function is_anyone_auth() : bool
+    {
+        $guards = Config::get('auth.guards');
+
+        $guards = array_keys($guards);
+
+        foreach ($guards as $guard){
+            if( auth($guard)->check() ){
+                return true;
+            }
+        }
+        return false;
     }
 }

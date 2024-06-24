@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")
+            $table->foreignId("patient_id")
             ->references('id')
-            ->on("users");
+            ->on("patients");
 
             $table->text("content");
 
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('audio_path', 2048)->nullable();
 
             $table->string("filling")->nullable();
-            
+
             $table->timestamps();
         });
     }

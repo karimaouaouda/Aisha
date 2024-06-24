@@ -55,7 +55,7 @@
                 </div>
                 <div class="message-content h-fit bg-gray-300 p-2 rounded-md relative top-2 max-w-[400px]">
                     <p>
-                        {{ $message->gpt_response }}
+                        {!! formatNormalMessage($message->gpt_response) !!}
                     </p>
                     <button class="float-right" x-data="listenButtonData" @click="listen">
                         <i class="bi bi-headphones hover:bg-slate-200 hover:bg-opacity-30 rounded-full flex items-center justify-center w-6 h-6"></i>

@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'hugging_face_key' => env('HUGGING_FACE_API_KEY', null),
+
     'models' => [
 
         'post_analytics' => [
