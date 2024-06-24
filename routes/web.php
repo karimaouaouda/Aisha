@@ -14,6 +14,24 @@ Route::get('/', function () {
 });
 
 
+
+Route::controller(\App\Http\Controllers\ArticleController::class)
+    ->name('articles.')
+    ->group(function(){
+
+        Route::get('/doctors/articles', 'index')->name('index');
+
+        Route::get('/doctors/articles/{article}', 'show');
+
+        //Route::get('articles/{article}/like', 'like')
+
+        //Route::get('articles/{article}/comment', 'like')
+
+        //Route::get('articles/{article}/share', 'like')
+
+    });
+
+
 Route::get('test-text', function (){
     $classifier = new \App\Services\Ai\TextEmotionService();
 
@@ -96,6 +114,11 @@ Route::resource('doctors', DoctorController::class)
         'edit',
         'delete'
     );
+
+Route::controller(DoctorController::class)
+    ->group(function(){
+        Route::get('/doctors/{doctor}/{section}', 'profile')->name('doctor.profile');
+    });
 
 Route::get('/s', function(){
     $t = "These symptoms could indicate an underlying medical condition, such as: * **Hyperthyroidism:** An overactive thyroid gland can cause increased appetite, weight loss, sleep disturbances, and anxiety. * **Diabetes:** Untreated diabetes can lead to excessive thirst and hunger, weight loss, and difficulty sleeping. * **Anxiety disorder:** Anxiety can trigger increased eating, sleep problems, and feelings of restlessness. * **Inflammatory bowel disease (IBD):** Conditions like ulcerative colitis and Crohn's disease can cause increased appetite, weight loss, and sleep disturbances. * **Cancer:** In some cases, certain types of cancer can lead to unexplained weight loss, appetite changes, and sleep issues. It's important to consult a healthcare professional to determine the cause of your symptoms and receive appropriate treatment. They may recommend: * **Physical exam:** To check for signs and symptoms of underlying conditions. * **Blood tests:** To assess thyroid function, blood sugar levels, and inflammatory markers. * **Imaging tests:** Such as X-rays or CT scans, to rule out structural abnormalities or masses. * **Referral to a specialist:** Depending on the suspected diagnosis, they may refer you to an endocrinologist, gastroenterologist, or mental health professional for further evaluation and treatment. Early detection and treatment of an underlying medical condition is crucial for improving your health and well-being.";

@@ -2,12 +2,14 @@
 
 namespace App\Models\Auth;
 
+use App\Models\Article;
 use App\Traits\CanChat;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Exception;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -83,6 +85,10 @@ class Doctor extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $panel->getId() == 'doctor';
     }
 
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class);
+    }
 
     //relations
     //motph wiith address

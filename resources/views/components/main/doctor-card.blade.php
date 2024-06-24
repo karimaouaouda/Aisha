@@ -13,7 +13,7 @@
     <div class="text-center mt-2">
         <a href="{{ route('doctors.show', ['doctor' => $doctor->id]) }}" class="flex hover:underline hover:text-sky-500 anim-300 gap-2 items-center justify-center">
             <i class="bi bi-person-fill"></i>
-            <h2 class="font-semibold capitalize"> {{ $doctor->name }} </h2>
+            <h2 class="font-semibold text-xl capitalize"> {{ $doctor->name }} </h2>
         </a>
         <p class="text-gray-500 uppercase">{{ $doctor->speciality }}</p>
     </div>

@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f94d3652-63de-4932-9bec-7f7bbddb603c" name="Changes" comment="" />
+    <list default="true" id="f94d3652-63de-4932-9bec-7f7bbddb603c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.env" beforeDir="false" afterPath="$PROJECT_DIR$/../.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lang/en/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lang/en/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lang/en/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../lang/en/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/components/main/doctor-card.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/components/main/doctor-card.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/discover/doctors/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/discover/doctors/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layouts/wrapper.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/wrapper.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,10 +23,13 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\laragon\bin\php\php-8.3.0-Win32-vs16-x64\php.exe" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2i9lk6Qp8Q2PZMgqSCcMktFpuOP" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -23,6 +39,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -43,6 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1718910820069</updated>
       <workItem from="1718910822128" duration="18000" />
+      <workItem from="1719256944445" duration="14000" />
     </task>
     <servers />
   </component>

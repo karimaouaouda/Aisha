@@ -1,6 +1,7 @@
 import Alpine from "alpinejs";
 import Swal from "sweetalert2";
 import axios from 'axios'
+import configs from '../config/config'
 
 Alpine.data('MedicalFollowButtonData', function(){
     return {
@@ -21,18 +22,18 @@ Alpine.data('MedicalFollowButtonData', function(){
 
 
             Swal.fire({
-                title: "send medical request to a doctor",
+                title: "send medical request to a doctor, tell him why he should accept you",
                 input: "text",
                 inputAttributes: {
                   autocapitalize: "off"
                 },
                 showCancelButton: true,
-                confirmButtonText: "send",
+                confirmButtonText: "request now",
                 showLoaderOnConfirm: true,
                 preConfirm: async (note) => {
                   try {
                     const url = `
-                      https://aisha.test/doctors/${el.dataset.doctor}/request
+                      ${configs.base_url}/doctors/${el.dataset.doctor}/request
                     `;
                     const response = await axios.post(url, {
                         note : note
@@ -53,15 +54,24 @@ Alpine.data('MedicalFollowButtonData', function(){
               }).then((result) => {
                 if (result.isConfirmed) {
                   Swal.fire({
-                    title: `wow`,
+                    icon : 'success',
+                    title: `request has been sent`,
+                    text : 'the request sent successfully, we will notify you when doctor respond to your request'
                   });
+
+                  setTimeout(function(){
+                    window.location.reload()
+                  }, 1500)
                 }
-              });
-
-
-            
-            
-
+              }).catch(err => {
+                Swal.fire({
+                  icon : 'error',
+                  title: `request not sent`,
+                  text : err
+                });
+              })
         }
     }
 })
+
+Alpine.start()

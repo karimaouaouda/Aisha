@@ -1,6 +1,6 @@
-<x-custom-layout>
+<x-layouts.wrapper>
 
-    <div class="content w-full px-0 md:px-5 lg:px-16">
+    <div class="content w-full px-0 md:px-5 lg:px-16" x-data="{section : '{{ $section }}'}">
 
         <div class="w-full">
 
@@ -52,7 +52,7 @@
                                     :class="{
                                         'bg-blue-500': !sent,
                                         'bg-sky-400': sent || load,
-                                        'cursor-not-allowed': load || sent
+                                        'cursor-not-allowed': load || $el.dataset.sent == '1'
                                     }"
                                     class="rounded-full h-10  text-sm uppercase px-4 bg-blue-500 text-white">
 
@@ -71,7 +71,7 @@
                                 class="block rounded-full h-10 flex items-center  text-sm uppercase px-4 bg-sky-400 text-white">
                                 <i class="bi h-full flex items-center bi-check2-all text-md mr-1"></i>
                                 <span>
-                                    follow request sent
+                                    medical follow
                                 </span>
                             </a>
 
@@ -109,8 +109,112 @@
 
             </div>
 
-            <div class="h-14 w-full border bg-slate-200">
+            <div class="min-h-screen relative w-full border bg-[#e1ebfa]">
+                <div class="w-full px-4 flex items-center py-4 justify-between border-b border-sky-200 shadow-sm">
+                    <div class="flex gap-3 items-center h-full">
+                        <div class="font-semibold pr-2 border-r  shadow-r">
+                            discover 
+                        </div>
+    
+                        <div class="flex gap-2 md:gap-4 lg:gap-6 items-center h-full">
+    
+                            <a href="{{ $section == 'about' ? '#' : route('doctor.profile', ['doctor' => $doctor->id, 'section' => 'about']) }}" class="about cursor-pointer decoration-none px-4 py-2 rounded-md font-semibold capitalize hover:bg-slate-300 anim-300" 
+                                data-name="about"
+                                :class="{
+                                    'border-b-2 border-sky-400 shadow-b !rounded-none text-sky-400' : section == $el.dataset.name
+                                }"
+                                x-text="$el.dataset.name">
+                                
+                            </a>
+    
+                            <a href="{{ $section == 'opinions' ? '#' : route('doctor.profile', ['doctor' => $doctor->id, 'section' => 'opinions']) }}" class="about cursor-pointer decoration-none px-4 py-2 rounded-md font-semibold capitalize hover:bg-slate-300 anim-300" 
+                                data-name="opinions"
+                                :class="{
+                                    'border-b-2 border-sky-400 shadow-b !rounded-none text-sky-400' : section == $el.dataset.name
+                                }"
+                                x-text="$el.dataset.name">
+                                
+                            </a>
+    
+                            <a href="{{ $section == 'posts' ? '#' : route('doctor.profile', ['doctor' => $doctor->id, 'section' => 'posts']) }}" class="about cursor-pointer decoration-none px-4 py-2 rounded-md font-semibold capitalize hover:bg-slate-300 anim-300" 
+                                data-name="posts"
+                                :class="{
+                                    'border-b-2 border-sky-400 shadow-b !rounded-none text-sky-400' : section == $el.dataset.name
+                                }"
+                                x-text="$el.dataset.name">
+                                
+                            </a>
+    
+                            <a href="{{ $section == 'articles' ? '#' : route('doctor.profile', ['doctor' => $doctor->id, 'section' => 'articles']) }}" class="about cursor-pointer decoration-none px-4 py-2 rounded-md font-semibold capitalize hover:bg-slate-300 anim-300" 
+                                data-name="articles"
+                                :class="{
+                                    'border-b-2 border-sky-400 shadow-b !rounded-none text-sky-400' : section == $el.dataset.name
+                                }"
+                                x-text="$el.dataset.name">
+                                
+                            </a>
 
+                            <a  href="{{ $section == 'media' ? '#' : route('doctor.profile', ['doctor' => $doctor->id, 'section' => 'media']) }}" class="about cursor-pointer decoration-none px-4 py-2 rounded-md font-semibold capitalize hover:bg-slate-300 anim-300" 
+                                data-name="media"
+                                :class="{
+                                    'border-b-2 border-sky-400 shadow-b !rounded-none text-sky-400' : section == $el.dataset.name
+                                }"
+                                x-text="$el.dataset.name">
+                                
+                            </a>
+    
+                            {{-- <a class="about decoration-none px-4 py-2 rounded-md font-semibold capitalize hover:bg-slate-300 anim-300" 
+                                data-name="about"
+                                :class="{
+                                    'border-b-2 border-sky-400 shadow-b !rounded-none' : section == $el.dataset.name
+                                }">
+                                
+                            </a> --}}
+    
+                        </div>
+                    </div>
+
+                    <div class="actions flex gap-3">
+                        <div class="signaler items-center cursor-pointer text-red-500 hover:text-red-700 anim-300 flex gap-1 text-lg">
+                            <i class="bi bi-flag"></i>
+                            <span class="font-semibold hidden md:block">
+                                report
+                            </span>
+                        </div>
+
+                        <div class="signaler items-center cursor-pointer text-yellow-400 hover:text-yellow-500 anim-300 flex gap-1 text-lg">
+                            <i class="bi bi-star"></i>
+                            <span class="font-semibold hidden md:block">
+                                rate
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="w-full">
+
+                    @switch($section)
+                            @case('about')
+                                <x-profile.doctor.about :doctor="$doctor"/>
+                                @break
+                            @case('opinions')
+                                <x-profile.doctor.opinions :doctor="$doctor"/>
+                                @break
+                            @case('posts')
+                                <x-profile.doctor.posts :doctor="$doctor"/>
+                                @break
+                            @case('articles')
+                                <x-profile.doctor.articles :doctor="$doctor"/>
+                                @break
+                            @case('media')
+                                <x-profile.doctor.media :doctor="$doctor"/>
+                                @break
+                            @default
+                            <x-profile.doctor.about :doctor="$doctor"/>
+                        @endswitch
+
+                </div>
             </div>
 
 
@@ -118,6 +222,6 @@
         </div>
     </div>
 
-    @vite('resources/js/profile.js')
+    @vite('resources/js/doctor/profile.js')
 
-</x-custom-layout>
+</x-layouts.wrapper>
