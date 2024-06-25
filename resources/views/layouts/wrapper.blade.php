@@ -113,7 +113,7 @@
 <!-- Hero 2 - Bootstrap Brain Component -->
 
 <!-- Main -->
-<main id="main">
+<main id="main" class="bg-[#e1ebfa]">
 
 {{ $slot }}
 

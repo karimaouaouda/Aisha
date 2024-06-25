@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Auth\Doctor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 
 class DoctorController extends Controller
@@ -69,6 +70,10 @@ class DoctorController extends Controller
     public function profile(Doctor $doctor, string $section){
         if(in_array($section, Config::get('doctor.about_details', [])) ){
             abort(404);
+        }
+
+        if($section == 'posts'){
+            abort(503, 'we are developing this section to show doctor posts');
         }
 
         return $this->show($doctor, $section);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\DoctorController;
 use App\Http\Controllers\ChatController;
@@ -13,15 +14,19 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/articles/example', function(){
+    return view('discover.articles.show');
+} );
+
+Route::resource('articles', ArticleController::class);
 
 
-Route::controller(\App\Http\Controllers\ArticleController::class)
+
+Route::controller(ArticleController::class)
     ->name('articles.')
     ->group(function(){
 
-        Route::get('/doctors/articles', 'index')->name('index');
 
-        Route::get('/doctors/articles/{article}', 'show');
 
         //Route::get('articles/{article}/like', 'like')
 
