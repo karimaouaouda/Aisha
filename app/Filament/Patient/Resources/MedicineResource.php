@@ -19,6 +19,8 @@ class MedicineResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-inbox-stack';
 
+    protected static ?string $label = "Treatment";
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
