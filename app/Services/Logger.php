@@ -1,6 +1,8 @@
 <?php
  namespace App\Services;
 
+ use App\Services\Logger\LoggerChannel;
+ use Illuminate\Support\Facades\Config;
  use Illuminate\Support\Str;
 class Logger{
 
@@ -10,23 +12,41 @@ class Logger{
 
     protected string $prefix;
 
-    protected string $filename;
+    protected array $channels = [];
 
     public function __construct($root = null, $suffix = null, $prefix = null){
-        $this->root = is_null($root) ? base_path('/data_cycle_logs/') : $root;
+        $this->root = is_null($root) ? '/data_cycle_logs/' : $root;
 
-        $this->prefix = is_null($prefix) ? env('APP_NAME') : $prefix;
+        $this->prefix = is_null($prefix) ? Config::get('app.name') : $prefix;
 
         $this->suffix = is_null($suffix) ? '_log' : $suffix;
     }
 
-    private function generateFileName(string $middle = null): static
+    public function newChannel(): LoggerChannel
     {
         $uuid = Str::uuid()->toString();
 
-        $this->filename = sprintf("%s_%s_%s.log", $this->prefix, is_null($middle) ? $uuid : $middle, $this->suffix);
+        $channel = new LoggerChannel($uuid);
 
-        return  $this;
+        $channel->setPrefix($this->prefix)
+                    ->setSuffix($this->suffix)
+                    ->setPath($this->root);
+
+        $this->channels[] = $channel;
+
+        return  $channel;
+    }
+
+    public function getChannel(string $uuid = null){
+        if( !$uuid ){
+            foreach ($this->channels as $channel){
+                if( $channel->getUuid() == $uuid ){
+                    return $channel;
+                }
+            }
+        }
+
+        return null;
     }
 
     public static function make($root = null, $suffix = null, $prefix = null, $middle = null): static
@@ -58,7 +78,7 @@ class Logger{
 
     public function logToFile($text): static
     {
-        $file_path = $root . '/' . $this->filename;
+        $file_path = $this->root . '/' . $this->filename;
         $file = file_put_contents($file_path, $text, FILE_APPEND);
 
         return $this;

@@ -6,11 +6,14 @@ use App\Http\Controllers\ChatController;
 use App\Services\Ai\TextEmotionService;
 use App\Services\Ai\VoiceEmotionService;
 //use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use App\Services\Logger;
 use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
@@ -47,7 +50,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //App::setLocale('ar');
+
+        URL::forceScheme('https');
+
         Livewire::setScriptRoute(function ($handle) {
             return Route::get(Config::get('livewire.script_route', 'aisha/public/livewire/livewire.js'), $handle)
                         ->middleware('web');
@@ -58,9 +63,8 @@ class AppServiceProvider extends ServiceProvider
                         ->middleware('web');
         });
 
-//        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-//            $switch
-//                ->locales(['ar','en','fr']); // also accepts a closure
-//        });
+        $this->app->singleton(Logger::class, function(Application $app){
+            return new Logger('logs');
+        });
     }
 }

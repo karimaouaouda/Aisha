@@ -37,7 +37,6 @@ class VoiceEmotionService
 
         $exec  = sprintf("%s %s %s %s %s", ...$values);
 
-
         $process = Process::run($exec);
 
         $fillings = (explode("\n", $process->output()))[3];
@@ -52,7 +51,7 @@ class VoiceEmotionService
     protected function store(UploadedFile $file) : string
     {
 
-        $path = 'public/audio/_' . auth('patient')->user();
+        $path = 'public/audio/_' . auth('patient')->user()->id;
 
         $uniqueId = uniqid();
         $filename = $uniqueId . '.wav';
