@@ -1,0 +1,123 @@
+{
+    "BROKER_URL": "127.0.0.1",
+    "BROKER_PORT": 1883,
+    "TOPICS": [
+        {
+            "TYPE": "single",
+            "PREFIX": "air_quality",
+            "TIME_INTERVAL": 1800,
+            "DATA": [
+                {
+                    "NAME": "pollution_particles",
+                    "TYPE": "float",
+                    "MIN_VALUE": 0,
+                    "MAX_VALUE": 1,
+                    "MAX_STEP": 0.15,
+                    "RETAIN_PROBABILITY": 0.9
+                },
+                {
+                    "NAME": "patient_id",
+                    "TYPE": "int",
+                    "MIN_VALUE": 11,
+                    "MAX_VALUE": 11,
+                    "MAX_STEP": 1,
+                    "RETAIN_PROBABILITY": 0.6
+                }
+            ]
+        },
+        {
+            "TYPE": "single",
+            "PREFIX": "heart_beats",
+            "TIME_INTERVAL": 60,
+            "DATA": [
+                {
+                    "NAME": "heart beats",
+                    "TYPE": "int",
+                    "MIN_VALUE": 0,
+                    "MAX_VALUE": 150,
+                    "MAX_STEP": 2,
+                    "RETAIN_PROBABILITY": 0.21
+                },
+                {
+                    "NAME": "patient_id",
+                    "TYPE": "int",
+                    "MIN_VALUE": 11,
+                    "MAX_VALUE": 11,
+                    "MAX_STEP": 1,
+                    "RETAIN_PROBABILITY": 0.6
+                }
+            ]
+        },
+        {
+            "TYPE": "single",
+            "PREFIX": "glukoz",
+            "TIME_INTERVAL": 600,
+            "DATA": [
+                {
+                    "NAME": "glukoz",
+                    "TYPE": "float",
+                    "MIN_VALUE": 0,
+                    "MAX_VALUE": 20,
+                    "MAX_STEP": 2,
+                    "RETAIN_PROBABILITY": 0.7
+                },
+                {
+                    "NAME": "patient_id",
+                    "TYPE": "int",
+                    "MIN_VALUE": 11,
+                    "MAX_VALUE": 11,
+                    "MAX_STEP": 1,
+                    "RETAIN_PROBABILITY": 0.6
+                }
+            ]
+        },
+        {
+            "TYPE": "single",
+            "PREFIX": "blood_pressure",
+            "TIME_INTERVAL": 600,
+            "DATA": [
+                {
+                    "NAME": "blood pressure",
+                    "TYPE": "float",
+                    "MIN_VALUE": 5,
+                    "MAX_VALUE": 15,
+                    "MAX_STEP": 2,
+                    "RETAIN_PROBABILITY": 0.7
+                },
+                {
+                    "NAME": "patient_id",
+                    "TYPE": "int",
+                    "MIN_VALUE": 11,
+                    "MAX_VALUE": 11,
+                    "MAX_STEP": 1,
+                    "RETAIN_PROBABILITY": 0.6
+                }
+            ]
+        },
+        {
+            "TYPE": "list",
+            "PREFIX": "temperature",
+            "LIST": ["user", "house"],
+            "TIME_INTERVAL": 1800,
+            "DATA": [
+                {
+                    "NAME": "temperature",
+                    "TYPE": "float",
+                    "MIN_VALUE": 20,
+                    "MAX_VALUE": 55,
+                    "MAX_STEP": 3,
+                    "RETAIN_PROBABILITY": 0.5,
+                    "INCREASE_PROBABILITY": 0.6
+                },
+                {
+                    "NAME": "patient_id",
+                    "TYPE": "int",
+                    "MIN_VALUE": 11,
+                    "MAX_VALUE": 11,
+                    "MAX_STEP": 1,
+                    "RETAIN_PROBABILITY": 0.6
+                }
+            ]
+        }
+    ]
+}
