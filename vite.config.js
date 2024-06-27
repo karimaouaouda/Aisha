@@ -17,7 +17,7 @@ export default defineConfig({
                 'resources/js/patient/chat.js',
                 'resources/js/alpine.js',
                 'resources/js/templates.js',
-                'resources/js/wave-converter.js',
+                'resources/js/wav-converter.js',
             ],
             refresh: true,
         }),

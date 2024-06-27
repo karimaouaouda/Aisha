@@ -2,6 +2,7 @@
 
 namespace App\Filament\Patient\Resources;
 
+use App\Filament\Patient\Pages\Chat;
 use App\Filament\Patient\Resources\Base\ConversationResource\Pages;
 use App\Filament\Patient\Resources\ConversationResource\Pages\Conversations;
 use App\Models\Auth\Patient;
@@ -101,7 +102,7 @@ class ConversationResource extends Resource
             'create' => \App\Filament\Patient\Resources\ConversationResource\Pages\CreateConversation::route('/create'),
             'edit' => \App\Filament\Patient\Resources\ConversationResource\Pages\EditConversation::route('/{record}/edit'),
             'inbox' => \App\Filament\Patient\Resources\ConversationResource\Pages\Conversations::route('/{record}/inbox'),
-            'list' => Conversations::route('/list')
+            'list' => Conversations::route('/list'),
         ];
     }
 }

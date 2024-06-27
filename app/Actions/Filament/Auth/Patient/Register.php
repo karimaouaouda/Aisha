@@ -39,7 +39,7 @@ class Register extends FilamentRegister
                                 ->color(Color::Sky)
                                 ->label('continue with google')
                                 ->action(function (){
-                                    $this->redirect('https://chatpy.test/auth/redirect/google', false);
+                                    $this->redirect(route('social.redirect', ['service' => 'google']), false);
                                 })
                         ])->fullWidth(),
                     ])

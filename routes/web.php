@@ -81,8 +81,8 @@ Route::middleware([AuthSetter::class])->group(function () {
         })->name('dashboard');
     });
 
-    Route::get('/d', function(){
-        return 'f4';
+    Route::get('/test-page', function(){
+        return view('test.page');
     });
     Route::get('/test', function () {
         $process = Artisan::call('analyzer:run', [

@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Actions\Filament\Auth\Patient\Login;
 use App\Actions\Filament\Auth\Patient\Register;
+use App\Filament\Patient\Pages\Chat;
 use App\Filament\Patient\Pages\Dashboard;
 use App\Filament\Patient\Pages\Settings;
 use App\Filament\Patient\Widgets\HealthState;
@@ -55,7 +56,7 @@ class PatientPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Patient/Resources'), for: 'App\\Filament\\Patient\\Resources')
             ->discoverPages(in: app_path('Filament/Patient/Pages'), for: 'App\\Filament\\Patient\\Pages')
             ->pages([
-                Dashboard::class,
+                Chat::class,
                 Settings::class
             ])
             ->discoverWidgets(in: app_path('Filament/Patient/Widgets'), for: 'App\\Filament\\Patient\\Widgets')

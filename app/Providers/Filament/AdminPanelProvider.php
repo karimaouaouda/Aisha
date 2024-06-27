@@ -28,10 +28,11 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin/workspace')
+            ->path('admin')
             ->authGuard('admin')
             ->login()
             ->emailVerification()
+            ->passwordReset()
             ->profile(isSimple: false)
             ->databaseNotifications()
             ->databaseNotificationsPolling('5s')

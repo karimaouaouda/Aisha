@@ -36,7 +36,7 @@
 <header id="header" class="sticky-top bsb-tpl-header-sticky bsb-tpl-header-sticky-animationX">
 
     <!-- Navbar 1 - Bootstrap Brain Component -->
-    <nav id="scrollspyNav"
+    <nav @click.shift="console.log('shift clicked')" id="scrollspyNav"
          class="navbar navbar-expand-lg bsb-tpl-bg-blue bsb-navbar bsb-navbar-hover bsb-navbar-caret bsb-tpl-navbar-sticky"
          data-bsb-sticky-target="#header">
         <div class="container">
@@ -67,8 +67,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('discover.index') }}" aria-current="page"
-                               data-bs-dismiss="offcanvas" data-bs-target="#offcanvasNavbar">
+                            <a class="nav-link active" href="{{ route('discover.index') }}">
                                 {{ __('index.navbar.discover') }}
                             </a>
                         </li>

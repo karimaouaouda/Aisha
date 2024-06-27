@@ -3,6 +3,7 @@
 namespace App\Models\Auth;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\HasAddress;
 use Exception;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -22,6 +23,7 @@ class Admin extends Authenticatable implements FilamentUser
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
+    use HasAddress;
     use TwoFactorAuthenticatable;
 
     /**

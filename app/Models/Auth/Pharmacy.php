@@ -25,7 +25,7 @@ class Pharmacy extends Authenticatable implements FilamentUser
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-
+    use HasAddress;
     /**
      * The attributes that are mass assignable.
      *

@@ -29,7 +29,7 @@ class Login extends FilamentLogin
                                 ->color(Color::Blue)
                                 ->label('continue with facebook')
                                 ->action(function (){
-                                    $this->redirect('https://chatpy.test/auth/redirect/fb', false);
+                                    $this->redirect(route('social.redirect', ['service' => 'fb']), false);
                                 } )
                         ])->fullWidth(),
                         Actions::make([
@@ -37,7 +37,7 @@ class Login extends FilamentLogin
                                 ->color(Color::Sky)
                                 ->label('continue with google')
                                 ->action(function (){
-                                    $this->redirect('https://chatpy.test/auth/redirect/google', false);
+                                    $this->redirect(route('social.redirect', ['service' => 'google']), false);
                                 } )
                         ])->fullWidth(),
                     ])

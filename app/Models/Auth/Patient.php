@@ -9,6 +9,7 @@ use App\Models\MedicalReport;
 use App\Models\Medicine;
 use App\Models\Message;
 use App\Traits\CanChat;
+use App\Traits\HasAddress;
 use App\Traits\HaveCover;
 use App\Traits\Patient\CanMedicalFollow;
 use Exception;
@@ -37,6 +38,7 @@ class Patient extends Authenticatable implements FilamentUser
     use TwoFactorAuthenticatable;
     use CanChat;
     use CanMedicalFollow;
+    use HasAddress;
 
     /**
      * The attributes that are mass assignable.
