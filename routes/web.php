@@ -18,15 +18,21 @@ Route::get('/articles/example', function(){
     return view('discover.articles.show');
 } );
 
+Route::resource('learn', \App\Http\Controllers\Learn\LearnController::class);
+
+Route::resource('blog', \App\Http\Controllers\Blog\BlogController::class);
+
 Route::resource('articles', ArticleController::class);
 
 
-
+Route::controller(MainController::class)
+    ->name('discover.')
+    ->group(function(){
+        Route::get('/discover', 'index')->name('index');
+    });
 Route::controller(ArticleController::class)
     ->name('articles.')
     ->group(function(){
-
-
 
         //Route::get('articles/{article}/like', 'like')
 

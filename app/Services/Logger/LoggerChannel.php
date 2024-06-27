@@ -59,10 +59,9 @@ class LoggerChannel
     {
         if( $this->content != null ){
             $this->content .= $newLine ? "\n{$text}" : ' '.$text;
+        }else{
+            $this->content = $newLine ? "\n{$text}" : ' '.$text;
         }
-
-        $this->content = $newLine ? "\n{$text}" : ' '.$text;
-
         return $this;
     }
 

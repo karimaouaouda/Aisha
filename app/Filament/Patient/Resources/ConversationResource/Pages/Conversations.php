@@ -28,7 +28,7 @@ class Conversations extends Page
     {
         return [
             'conversation' => $this->record,
-            'user' => auth('patient')->id(),
+            'user' => auth('patient')->user(),
             'other' => $this->record->getOtherParticipant(auth('patient')->user())
         ];
     }

@@ -1,5 +1,5 @@
 <x-layouts.wrapper>
-    <section id="scrollspyHero" class="bsb-hero-2 bsb-tpl-bg-blue py-5 py-xl-8 py-xxl-10">
+    <section x-data="{show : false}" id="scrollspyHero" class="bsb-hero-2 relative bsb-tpl-bg-blue py-5 py-xl-8 py-xxl-10">
         <div class="container overflow-hidden">
             <div class="row gy-3 gy-lg-0 align-items-lg-center justify-content-lg-between">
                 <div class="col-12 col-lg-6 order-1 order-lg-0">
@@ -10,12 +10,8 @@
                             </span></mark>{!! __('index.header.second_line') !!}</h1>
                     <p class="fs-4 mb-5">{{ __('index.header.subheading') }}</p>
                     <div class="d-grid gap-2 d-sm-flex">
-                        <button type="button" class="btn btn-primary bsb-btn-3xl rounded-pill">
-                            {{ __('auth.login') }}
-                        </button>
-                        <button type="button"
-                                class="btn btn-outline-primary bsb-btn-3xl rounded-pill">
-                            {{ __('auth.register') }}
+                        <button @click="show = true" type="button" class="btn btn-primary bsb-btn-3xl rounded-pill">
+                            Start now <i class="bi bi-arrow-right"></i>
                         </button>
 
                         <button class="btn btn-outline-primary bsb-btn-3xl rounded-pill">
@@ -27,8 +23,78 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-5 text-center">
-                    <img class="img-fluid" loading="lazy" src="./images/aisha.png" alt=""
-                         style="-webkit-mask-image: url(./assets/img/hero/hero-blob-1.svg); mask-image: url(./assets/img/hero/hero-blob-1.svg);">
+                    <img class="img-fluid" loading="lazy" src="./images/aisha.png" alt="aisha logo">
+                </div>
+            </div>
+        </div>
+
+        <div x-show="show" x-transition class="absolute w-full h-full top-0 left-0 bg-black bg-opacity-50 flex justify-center items-center flex-wrap">
+            <div class="w-10/12 p-6 h-11/12 max-h-screen overflow-auto gap-4 bg-white rounded-lg shadow-lg flex flex-col">
+                <div class="header flex justify-between items-center">
+                    <h1 class="font-semibold drop-shadow text-2xl text-sky-500 capitalize">
+                        Continue as :
+                    </h1>
+
+                    <i @click="show=false" class="bi bi-x-lg cursor-pointer text-2xl text-red-500 hover:text-red-700 anim-300"></i>
+                </div>
+                <div class="w-full h-auto flex-wrap h-auto flex justify-center gap-3">
+                    <div class="min-w-[350px] hover:scale-105 anim-300 w-72 h-96 bg-slate-100 rounded-lg shadow-md p-4 flex gap-2 flex-col items-center">
+                        <div class="mx-auto w-32 h-32 rounded-full overflow-hidden bg-sky-500">
+                            <img src="{{asset('./images/doc-avatar.jpg')}}" class="w-full h-full object-cover" alt="doctor avatar">
+                        </div>
+        
+                        <h2 class="text-xl text-slate-800 text-center font-bold uppercase tracking-wide">
+                            Doctor
+                        </h2>
+
+                        <p class="text-slate-600 drop-shadow text-center">
+                            help improve your patients experience
+                            by degetalize the transactions with the help of
+                            the power of <span class="font-semibold text-sky-700">Artificial Intelegence</span>
+                        </p>
+
+                        <a href="{{ route('filament.doctor.auth.register') }}" class="flex gap-2 font-semibold  text-sky-500 hover:text-sky-600 anim-300">
+                            continue <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="min-w-[350px] hover:scale-105 anim-300 w-72 h-96 bg-slate-100 rounded-lg shadow-md p-4 flex gap-2 flex-col items-center">
+                        <div class="mx-auto w-32 h-32 rounded-full overflow-hidden bg-sky-500">
+                            <img src="{{asset('./images/pharmacy-avatar.jpg')}}" class="w-full h-full object-cover" alt="doctor avatar">
+                        </div>
+        
+                        <h2 class="text-xl text-slate-800 text-center font-bold uppercase tracking-wide">
+                            Pharmacy
+                        </h2>
+
+                        <p class="text-slate-600 drop-shadow text-center">
+                           make the business easy with our stock manager and delivery system that
+                           help people to find you with <span class="font-semibold text-sky-700">our system</span>
+                        </p>
+
+                        <a href="{{ route('filament.pharmacy.auth.register') }}" class="flex gap-2 font-semibold  text-sky-500 hover:text-sky-600 anim-300">
+                            continue <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="min-w-[350px] hover:scale-105 anim-300 w-72 h-96 bg-slate-100 rounded-lg shadow-md p-4 flex gap-2 flex-col items-center">
+                        <div class="mx-auto w-32 h-32 rounded-full overflow-hidden bg-white">
+                            <img src="{{asset('./images/patient-avatar.jpg')}}" class="w-full h-full" alt="doctor avatar">
+                        </div>
+        
+                        <h2 class="text-xl text-slate-800 text-center font-bold uppercase tracking-wide">
+                            Patient
+                        </h2>
+
+                        <p class="text-slate-600 drop-shadow text-center">
+                           improve you healthcare experience and be so close to your doctors and 
+                           discover your health state with <span class="font-semibold text-sky-700">Artificial Intelegence</span>
+                        </p>
+
+                        <a href="{{ route('filament.patient.auth.register') }}" class="flex gap-2 font-semibold  text-sky-500 hover:text-sky-600 anim-300">
+                            continue <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -195,7 +261,7 @@
                                                 aria-controls="collapseOne">
                                             Very Affordable Rates </button>
                                     </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                    <div id="collapseOne" class="accordion-collapse show"
                                          aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
                                             We offer some of the most competitive rates in the industry, without
@@ -213,7 +279,7 @@
                                             Contemporary Skills
                                         </button>
                                     </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                    <div id="collapseTwo" class="accordion-collapse"
                                          aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
                                             Our team is made up of highly skilled and experienced professionals who
@@ -377,11 +443,11 @@
                     <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
                         <div class="card-body p-0">
                             <figure class="m-0 p-0">
-                                <img style="height: 16rem" class="img-fluid" loading="lazy" src="./assets/img/team/team-img-4.jpg"
+                                <img style="height: 16rem" class="img-fluid" loading="lazy" src="{{ asset('./images/kirati.jpg') }}"
                                      alt="">
                                 <figcaption class="m-0 p-4">
-                                    <h4 class="mb-1">Gasmi Samir</h4>
-                                    <p class="text-secondary mb-0">Medical Director</p>
+                                    <h4 class="mb-1">Dr.A Kirati</h4>
+                                    <p class="text-secondary mb-0">Health Specialist</p>
                                 </figcaption>
                             </figure>
                         </div>
@@ -553,17 +619,19 @@
                     <div class="card border-0 border-bottom border-primary shadow-sm">
                         <div class="card-body p-4 p-xxl-5">
                             <figure>
-                                <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
-                                     src="./assets/img/testimonial/testimonial-img-1.jpg" alt="Luna John">
+                                <img class="img-fluid w-24 h-24 rounded object-cover bg-white rounded-circle mb-4 border border-5" loading="lazy"
+                                     src="{{ asset('./images/bachir_bien.jpg') }}" alt="Luna John">
                                 <figcaption>
                                     <div class="bsb-ratings text-warning mb-3" data-bsb-star="5"
                                          data-bsb-star-off="0"></div>
-                                    <blockquote class="bsb-blockquote-icon mb-4">We were so impressed with the work
-                                        they did for us. They were able to take our vision and turn it into a
-                                        reality, and they did it all on time and within budget. We would highly
-                                        recommend them to anyone looking for a reliable partner.</blockquote>
-                                    <h4 class="mb-2">Luna John</h4>
-                                    <h5 class="fs-6 text-secondary mb-0">UX Designer</h5>
+                                    <blockquote class="bsb-blockquote-icon mb-4">I am a person who suffers
+                                         from summer allergies that cause me shortness of breath.
+                                          Aisha helped me remember my oxygen spray before bed and during
+                                           sleep in some seizures. It also helped me remember the times for my
+                                            medications and appointments with doctors,
+                                         which contributed to a noticeable improvement in my condition compared to previous years.</blockquote>
+                                    <h4 class="mb-2">Mohammed Bachir Hammouche</h4>
+                                    <h5 class="fs-6 text-secondary mb-0">DZ Telecom</h5>
                                 </figcaption>
                             </figure>
                         </div>
@@ -573,17 +641,17 @@
                     <div class="card border-0 border-bottom border-primary shadow-sm">
                         <div class="card-body p-4 p-xxl-5">
                             <figure>
-                                <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
-                                     src="./assets/img/testimonial/testimonial-img-2.jpg" alt="Mark Smith">
+                                <img class="w-24 h-24 object-cover rounded-full border-5 border-sky-300" loading="lazy"
+                                     src="{{ asset('./images/billel_bien.jpg') }}" alt="Mark Smith">
                                 <figcaption>
                                     <div class="bsb-ratings text-warning mb-3" data-bsb-star="4"
                                          data-bsb-star-off="1"></div>
-                                    <blockquote class="bsb-blockquote-icon mb-4">We were looking for a company that
-                                        could help us develop a new website that was both visually appealing and
-                                        user-friendly. We are so happy with the results, and we would highly
-                                        recommend them to anyone looking for a new website.</blockquote>
-                                    <h4 class="mb-2">Mark Smith</h4>
-                                    <h5 class="fs-6 text-secondary mb-0">Marketing Specialist</h5>
+                                    <blockquote class="bsb-blockquote-icon mb-4">I suffer from excessive thinking and obsessive thoughts,
+                                         which leads to a lot of insomnia and excessive thinking that affects my mental and physical health.
+                                          After dealing with Aisha, she guided me and improved my way of thinking about problems and matters. 
+                                        I think in a positive way, which led to a great extent to the gradual disappearance of these symptoms..</blockquote>
+                                    <h4 class="mb-2">Gueffel Bilal</h4>
+                                    <h5 class="fs-6 text-secondary mb-0">Chicken Seller</h5>
                                 </figcaption>
                             </figure>
                         </div>
@@ -593,17 +661,19 @@
                     <div class="card border-0 border-bottom border-primary shadow-sm">
                         <div class="card-body p-4 p-xxl-5">
                             <figure>
-                                <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
-                                     src="./assets/img/testimonial/testimonial-img-4.jpg" alt="Luke Reeves">
+                                <img class="img-fluid w-24 !h-24 object-cover rounded-circle mb-4 border border-5" loading="lazy"
+                                     src="{{ asset('./images/samer_bien.jpg') }}" alt="Luke Reeves">
                                 <figcaption>
                                     <div class="bsb-ratings text-warning mb-3" data-bsb-star="5"
                                          data-bsb-star-off="0"></div>
-                                    <blockquote class="bsb-blockquote-icon mb-4">We were looking for a company that
-                                        could help us with our branding. We needed a website and marketing
-                                        materials. They were able to create a brand identity that we loved. They
-                                        worked with us to develop a logo that represented our company.</blockquote>
-                                    <h4 class="mb-2">Luke Reeves</h4>
-                                    <h5 class="fs-6 text-secondary mb-0">Sales Manager</h5>
+                                    <blockquote class="bsb-blockquote-icon mb-4">I was addicted to smoking,
+                                         which caused me to be irritable and anxious.
+                                          I began to suffer from many financial and family problems.
+                                           After adopting and trying the Aisha project,
+                                            I noticed a lot of support from doctors and constant monitoring of activities to help me quit. 
+                                        I am now clean for more then three months into.</blockquote>
+                                    <h4 class="mb-2">Bazine Samer</h4>
+                                    <h5 class="fs-6 text-secondary mb-0">Bank Manager</h5>
                                 </figcaption>
                             </figure>
                         </div>
@@ -685,5 +755,7 @@
             </div>
         </div>
     </section>
+
+    @vite('resources/js/alpine.js')
 
 </x-layouts.wrapper>

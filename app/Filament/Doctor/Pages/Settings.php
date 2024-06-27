@@ -6,7 +6,9 @@ use Filament\Pages\Page;
 
 class Settings extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';
+
+    protected static ?int $navigationSort = 100;
 
     protected static string $view = 'filament.doctor.pages.settings';
 

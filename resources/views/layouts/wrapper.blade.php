@@ -67,6 +67,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('discover.index') }}" aria-current="page"
+                               data-bs-dismiss="offcanvas" data-bs-target="#offcanvasNavbar">
+                                {{ __('index.navbar.discover') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#scrollspyServices" data-bs-dismiss="offcanvas"
                                data-bs-target="#offcanvasNavbar">
                                 {{ __('index.navbar.services') }}

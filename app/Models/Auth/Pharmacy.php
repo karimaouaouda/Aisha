@@ -3,6 +3,7 @@
 namespace App\Models\Auth;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\HaveCover;
 use Exception;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -18,6 +19,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class Pharmacy extends Authenticatable implements FilamentUser
 {
+    use HaveCover;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;

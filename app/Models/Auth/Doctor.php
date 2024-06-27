@@ -4,6 +4,7 @@ namespace App\Models\Auth;
 
 use App\Models\Article;
 use App\Traits\CanChat;
+use App\Traits\HaveCover;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Exception;
 use Filament\Models\Contracts\FilamentUser;
@@ -21,6 +22,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class Doctor extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
+    use HaveCover;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -28,6 +30,11 @@ class Doctor extends Authenticatable implements FilamentUser, MustVerifyEmail
     use TwoFactorAuthenticatable;
     use CanChat;
 
+
+    public function patients(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Patient::class, 'medical_followings');
+    }
     /**
      * The attributes that are mass assignable.
      *

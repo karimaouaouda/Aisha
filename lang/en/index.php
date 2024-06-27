@@ -10,7 +10,8 @@ return [
         'about' => 'About',
         'team' => 'Team',
         'pricing' => 'Pricing',
-        'contact' => 'Contact'
+        'contact' => 'Contact',
+        'discover' => 'Discover'
     ],
 
     'header' => [

@@ -11,7 +11,7 @@ class Normal extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public $sent, public $content, public $image)
+    public function __construct(public string $content, public bool $sent)
     {
         //
     }

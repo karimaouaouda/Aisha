@@ -81,7 +81,7 @@ export var errorTemplate = () => {
         <div class="message-content h-fit bg-red-400 text-white p-2 rounded-md relative top-2 max-w-[400px]">
             sorry something went wrong please retry
         </div>
-        
+
     </div>
 </div>`
 }
@@ -95,10 +95,10 @@ export var reflechingTemplate = () => {
     <div class="chat-pic h-10 w-10 rounded-full overflow-hidden border-sky-500 border">
         <img src="${ JSON.parse(document.querySelector('#data').dataset.json).ai_pic}" class="w-full h-full" alt="">
     </div>
-    <div class="message-content h-fit bg-green-400 text-black p-2 rounded-md relative top-2 max-w-[400px]">
+    <div class="message-content text-xl font-bold trackingwide uppercase bg-clip-text text-transparent h-fit bg-slate-300 animate-pulse text-black p-2 rounded-md relative top-2 max-w-[400px]">
         thinking...
     </div>
-    
+
     </div>`
 
 

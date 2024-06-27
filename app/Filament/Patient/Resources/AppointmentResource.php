@@ -13,12 +13,15 @@ use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use function Laravel\Prompts\search;
 
 class AppointmentResource extends Resource
@@ -31,7 +34,8 @@ class AppointmentResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return Appointment::query()
-                                ->where("patient_id", "=", Filament::auth()->id());
+                                ->where("patient_id", "=", Filament::auth()->id())
+                                ->orderBy('status');
     }
 
     public static function form(Form $form): Form
@@ -66,9 +70,17 @@ class AppointmentResource extends Resource
             ->searchable()
             ->columns([
                 Tables\Columns\TextColumn::make("doctor.name")
-                    ->label("with doctor")->sortable(),
+                    ->html()
+                    ->label("with doctor")
+                    ->html()
+                    ->formatStateUsing(function(Appointment $record){
+                        return view('filament.parts.profile-pic', ['user' => $record->doctor]);
+                    })
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('time')
                     ->sortable()
+                    ->badge()
+                    ->color(Color::Sky)
                     ->label('appointment time'),
                 Tables\Columns\TextColumn::make('requester')
                     ->formatStateUsing(function(string $state){
@@ -80,7 +92,6 @@ class AppointmentResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
                     ->label('cancel'),
             ])

@@ -33,12 +33,12 @@ return [
     'facebook' => [
         'client_id' => env('FB_CLIENT_ID'),
         'client_secret' => env('FB_CLIENT_SECRET'),
-        'redirect' => 'https://chatpy.test/auth/fb/callback',
+        'redirect' => env('APP_URL') . '/auth/fb/callback',
     ],
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'http://localhost:8000/auth/google/callback',
+        'redirect' => env('APP_URL') . '/auth/google/callback',
     ],
     'socialite' => ['google', 'fb'],
 ];

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Auth\Doctor;
+use App\Models\Auth\Patient;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,11 +24,11 @@ class Appointment extends Model
 
     public function doctor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Doctor::class);
     }
 
     public function patient(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Patient::class);
     }
 }

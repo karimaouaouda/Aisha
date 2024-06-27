@@ -71,7 +71,10 @@
 
             @foreach ($conversation->chats as $message)
 
-                <x-conversation.message :sent="$other->id == $user->id" :chat="$message" />
+                @php
+                    $sent = ( ($message->source_conversationable_type == get_class($user)) && ( $message->source_conversationable_id == $user->id ) )
+                @endphp
+                <x-conversation.message :user="$user" :other="$other" :sent="$sent" :chat="$message" />
 
             @endforeach
 
@@ -82,6 +85,9 @@
             class="form h-16 flex items-center justify-around border border-slate-700 bg-slate-200 py-2 w-full">
             <i @click="isRecording ? stopRecord() : record()" id="mic"
                 class="bi bi-mic w-14 flex items-center justify-center text-xl hover:text-sky-700 cursor-pointer"></i>
+
+                <i @click="isRecording ? stopRecord() : record()" id="mic"
+                class="bi bi-image w-14 flex items-center justify-center text-xl hover:text-sky-700 cursor-pointer"></i>
             <select name="" id="mic-select" hidden></select>
             <span id="progress"></span>
             <div class="inner-form w-full h-full bg-slate-700 overflow-hidden rounded-md pl-4 relative">

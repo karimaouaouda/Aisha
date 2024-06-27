@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Article;
-use App\Models\Auth\Patient;
+use Illuminate\Contracts\Auth\Authenticatable as Patient;
 use Illuminate\Auth\Access\Response;
 
 class ArticlePolicy
@@ -13,7 +13,7 @@ class ArticlePolicy
      */
     public function viewAny(Patient $patient): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class ArticlePolicy
      */
     public function view(Patient $patient, Article $article): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class ArticlePolicy
      */
     public function create(Patient $patient): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class ArticlePolicy
      */
     public function update(Patient $patient, Article $article): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class ArticlePolicy
      */
     public function delete(Patient $patient, Article $article): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class ArticlePolicy
      */
     public function restore(Patient $patient, Article $article): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class ArticlePolicy
      */
     public function forceDelete(Patient $patient, Article $article): bool
     {
-        //
+        return true;
     }
 }

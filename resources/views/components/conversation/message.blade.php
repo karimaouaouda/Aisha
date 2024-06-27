@@ -1,9 +1,7 @@
 <div class="message-wrapper">
-    <div class="message flex relative gap-2" @class([
-    'flex-row-reverse' => !$sent
-]) x-data="{ 'content': '{{ is_array($parts) ? $parts['content'] : $parts }}' }">
+    <div class="message flex relative gap-2 {{ $sent ? 'flex-row':  'flex-row-reverse' }}"  x-data="{ 'content': '{{ is_array($parts) ? $parts['content'] : $parts }}' }">
         <div class="chat-pic h-10 w-10 rounded-full overflow-hidden border-sky-500 border-2">
-            <img src="{{ cache('profile_picture') ?? asset('media/ai1.jfif') }}" class="w-full h-full"
+            <img src="{{ $sent ? $user->profile_photo_url : $other->profile_photo_url }}" class="w-full h-full"
                 alt="">
         </div>
         <div class="message-content h-fit p-2 rounded-md relative top-2 max-w-[400px]">
@@ -16,7 +14,7 @@
                     request message
                 @break
                 @default
-                normal message
+                    <x-conversation.normal :sent="$sent" :content="$parts"/>
             @endswitch
         </div>
         <div x-data="{ open: false }" class="dropdown relative top-2 text-white text-xl cursor-pointer">

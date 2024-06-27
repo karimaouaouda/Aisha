@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Chain\FirstChain;
 use App\Chain\SecondChain;
+use App\Models\Article;
+use App\Models\Auth\Doctor;
 use App\Models\Message;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Pipeline;
@@ -17,6 +22,10 @@ use GeminiAPI\Resources\Parts\TextPart;
 class MainController extends Controller
 {
 
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('discover.index');
+    }
     public function send(Request $request)
     {
         $message = $request->input('message');

@@ -5,9 +5,11 @@ namespace App\Filament\Doctor\Resources;
 use App\Filament\Doctor\Resources\ArticleResource\Pages;
 use App\Filament\Doctor\Resources\ArticleResource\RelationManagers;
 use App\Models\Article;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,13 +19,51 @@ class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Hidden::make('doctor_id')
+                    ->default(Filament::auth()->id()),
+
+                Forms\Components\FileUpload::make('cover')
+                    ->image()
+                    ->columnSpan(2)
+                    ->required(),
+
+                Forms\Components\TextInput::make('subject')
+                    ->required()
+                    ->hint('the main of tha article'),
+
+                Forms\Components\TextInput::make('title')
+                    ->maxLength(100)
+                    ->required()
+                    ->hint('this title will be shown in article card'),
+
+                Forms\Components\TextInput::make('sub_title')
+                    ->maxLength(100)
+                    ->required()
+                    ->hint('this sub title will be shown in article card'),
+
+                Forms\Components\Textarea::make('summarize')
+                    ->maxLength(500)
+                    ->required()
+                    ->columnSpan(2)
+                    ->hint('this summarize will be shown in article card'),
+                Forms\Components\TextInput::make('price')
+                    ->required()
+                    ->maxValue(0.0)
+                    ->hintColor(Color::Green)
+                    ->hint('if you want it free, just set it to 0')
+                    ->numeric(),
+
+                Forms\Components\MarkdownEditor::make('content')
+                    ->columnSpan(2)
+                    ->required()
+                    ->minLength(1000)
+
             ]);
     }
 

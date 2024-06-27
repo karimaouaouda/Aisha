@@ -9,6 +9,7 @@ use App\Models\MedicalReport;
 use App\Models\Medicine;
 use App\Models\Message;
 use App\Traits\CanChat;
+use App\Traits\HaveCover;
 use App\Traits\Patient\CanMedicalFollow;
 use Exception;
 use Filament\Models\Contracts\FilamentUser;
@@ -28,6 +29,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class Patient extends Authenticatable implements FilamentUser
 {
+    use HaveCover;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;

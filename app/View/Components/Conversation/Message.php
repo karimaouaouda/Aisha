@@ -4,6 +4,7 @@ namespace App\View\Components\Conversation;
 
 use App\Models\Base\Chat;
 use Closure;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -17,7 +18,7 @@ class Message extends Component
 
     public array|string $parts;
 
-    public function __construct(public Chat $chat, public bool $sent)
+    public function __construct(public Chat $chat, public bool $sent, public Authenticatable $user, public Authenticatable $other)
     {
         $this->type = $chat->type;
         $this->parts = formatMessage($this->chat->content, $chat->type);

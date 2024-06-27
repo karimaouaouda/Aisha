@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "alpinejs": "^3.13.8",
+        "assemblyai": "^4.5.0",
         "gtts": "^0.2.1",
         "recorder-js": "^1.0.7",
         "sweetalert2": "^11.12.0",

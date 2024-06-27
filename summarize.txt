@@ -1,0 +1,18 @@
+First here talk about the system objective, and how we will enhance
+the elderly or the
+ patient query by adding contextual information from IoT devices.
+How the enriched queries will be sent to the AI-chatbots and the
+ person will get more accurate queries
+How to detect person’s emotions, health status,
+How to make post -analysis to discover diseases
+How to communicate data through MQQT protocol, etc.
+Etc..
+
+
+
+
+text :
+
+
+
+Aisha aspires to assist healthcare professionals, particularly through digitizing medical transactions with patients,  and leveraging technology to enhance patient care by providing statistics and information about patient conditions over specified time periods. These statistics help broaden doctors' insights into patient conditions more accurately. The inconvenience of patients traveling to doctors' offices, facing specific cases and symptoms, and office congestion may be a thing of the past. Aisha provides patients with a chatbot powered by artificial intelligence which trained on data extracted from over a billion medical diagnoses, and it is available 24/7. this chatbot accept patient talk as a query to him self,  and improve it by processing it with AI tools that process audio and text to extract emotions, and improve his response by conbine the query with data collected from IOT devices that the patient is using, this data are being collected from iot devices with MQTT protocol which is a protocol that used in devices to send data from this devices to online broker (Mosquitto in our case) which this last will send the data to the server of the owner, here is the power of aisha, the chatbot will use all this proccessed data (patient query, patient emotion, patient iot data) to respond with a high accurate response that make patient more confertable and more confident on our chat bot, more queries means more health data about patient , more accurate symptoms and more patient analytics, improve the AI tools to improve accuracy by train them on this data, and all this means more data , more accuracy, more helpfull tools for doctor that follow the patient health through our platform, because of our AI based Tools,a post analysis will happen,  the patient data will be processed by An AI Model that will predict on top of them the diseases that the patient can have, this predictions will shown to doctor, the doctor will be happy with these easy data, predictions, chart visualizing

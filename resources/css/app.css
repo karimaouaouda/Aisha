@@ -14,10 +14,34 @@ a{
 }
 
 
+.anim-300{
+    @apply duration-300 ease-in-out
+}
+
 .scroll-y{
     @apply overflow-x-hidden overflow-y-auto
 }
 
 .message-wrapper{
     @apply w-full h-fit pb-2  p-2 overflow-visible
+}
+
+/* width */
+::-webkit-scrollbar {
+    @apply w-2
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-transparent
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-md
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-500
 }
