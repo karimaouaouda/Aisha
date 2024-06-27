@@ -10,7 +10,7 @@ class Chat extends \Filament\Pages\Dashboard
 
     public static function getRoutePath(): string
     {
-        return 'filament.patient.pages.dashboard';
+        return '/med-gpt';
     }
 
     protected static ?string $navigationLabel = "MedGpt";

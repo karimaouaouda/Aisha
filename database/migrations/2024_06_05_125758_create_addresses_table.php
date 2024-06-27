@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+
             $table->string('addressable_type');
+
             $table->integer('addressable_id', unsigned : false);
-            $table->string('city');
-            $table->string('province');
-            $table->string('street_line');
+
+            $table->float('lat')->nullable();
+
+            $table->float('long')->nullable();
+
+            $table->string('location_name')->nullable();
+
             $table->timestamps();
         });
     }

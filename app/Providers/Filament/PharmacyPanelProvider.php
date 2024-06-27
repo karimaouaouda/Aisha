@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Shared\Pages\Settings;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -40,6 +41,7 @@ class PharmacyPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pharmacy/Pages'), for: 'App\\Filament\\Pharmacy\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+                Settings::class
             ])
             ->discoverWidgets(in: app_path('Filament/Pharmacy/Widgets'), for: 'App\\Filament\\Pharmacy\\Widgets')
             ->widgets([

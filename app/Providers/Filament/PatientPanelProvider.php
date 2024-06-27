@@ -4,19 +4,17 @@ namespace App\Providers\Filament;
 
 use App\Actions\Filament\Auth\Patient\Login;
 use App\Actions\Filament\Auth\Patient\Register;
+use App\Actions\Filament\Providers\AvatarProvider;
 use App\Filament\Patient\Pages\Chat;
-use App\Filament\Patient\Pages\Dashboard;
-use App\Filament\Patient\Pages\Settings;
 use App\Filament\Patient\Widgets\HealthState;
+use App\Filament\Shared\Pages\Settings;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\MenuItem;
-use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -24,6 +22,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Laravel\Jetstream\HasProfilePhoto;
 
 class PatientPanelProvider extends PanelProvider
 {
@@ -37,7 +36,7 @@ class PatientPanelProvider extends PanelProvider
             ->registration(Register::class)
             ->emailVerification()
             ->passwordReset()
-            ->profile(isSimple: false)
+            ->defaultAvatarProvider(AvatarProvider::class)
             ->userMenuItems([
                 MenuItem::make()
                     ->label('Settings')

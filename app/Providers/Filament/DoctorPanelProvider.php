@@ -4,7 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Actions\Filament\Auth\Doctor\Profile;
 use App\Actions\Filament\Auth\Doctor\Register;
-use App\Filament\Doctor\Pages\Settings;
+use App\Filament\Shared\Pages\Settings;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;

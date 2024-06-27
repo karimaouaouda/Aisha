@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Filament\Patient\Pages;
+namespace App\Filament\Shared\Pages;
 
 use Cheesegrits\FilamentGoogleMaps\Fields\Geocomplete;
 use Cheesegrits\FilamentGoogleMaps\Fields\Map;
-use Filament\Actions\Concerns\HasForm;
-use Filament\Forms\Commands\Concerns\CanGenerateForms;
+use Filament\Facades\Filament;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 use Filament\Pages\Page;
 use Filament\Pages\SubNavigationPosition;
 class Settings extends Page implements HasForms
@@ -54,33 +52,50 @@ class Settings extends Page implements HasForms
     {
         return $form
                     ->schema([
+                        Hidden::make('addressable_type')
+                            ->default(get_class(Filament::auth()->user()))
+                            ->required(),
+                        Hidden::make('addressable_id')
+                            ->default(Filament::auth()->id())
+                            ->required(),
+
                         Geocomplete::make('geocomplete')
                             ->reactive()
-                            ->label('location chosen'),
+                            ->hint('and the location and see the map')
+                            ->label('search for a location'),
                         Map::make('location')
                             ->label('location')
-                            ->mapControls([
-                                'mapTypeControl'    => true,
-                                'scaleControl'      => true,
-                                'streetViewControl' => true,
-                                'rotateControl'     => true,
-                                'fullscreenControl' => true,
-                                'searchBoxControl'  => true, // creates geocomplete field inside map
-                                'zoomControl'       => false,
-                            ])
+                            ->default(function(){
+                                return Filament::auth()->user()->address->location['lat'];
+                            })
                             ->geolocate()
                             ->geolocateOnLoad()
                             ->clickable()
                             ->autocomplete('geocomplete')
                             ->lazy()
-                            ->afterStateUpdated(function($state){
-                                dd($state);
-                            })
                             ->reactive(),
                     ])
-                    ->statePath('data');
+                    ->statePath('data')
+                    ->model(Filament::auth()->user()->address);
     }
 
+    public function create()
+    {
+        $address = Filament::auth()->user()->address;
+
+        $data = $this->address->getState();
+
+        $address->lat = $data['location']['lat'];
+
+        $address->long = $data['location']['lng'];
+
+        $address->save();
+
+        Notification::make()
+            ->title('address saved')
+            ->success()
+            ->send();
+    }
     public function other(Form $form): Form
     {
         return $form
