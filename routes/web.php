@@ -81,6 +81,9 @@ Route::middleware([AuthSetter::class])->group(function () {
         })->name('dashboard');
     });
 
+    Route::get('/d', function(){
+        return 'f4';
+    });
     Route::get('/test', function () {
         $process = Artisan::call('analyzer:run', [
             '--audio' => base_path('\storage\app\public\audio\661fe8c165407.wav')
