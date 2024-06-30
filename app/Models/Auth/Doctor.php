@@ -4,6 +4,7 @@ namespace App\Models\Auth;
 
 use App\Models\Article;
 use App\Traits\CanChat;
+use App\Traits\Doctor\DoctorTrait;
 use App\Traits\HasAddress;
 use App\Traits\HaveCover;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -31,7 +32,7 @@ class Doctor extends Authenticatable implements FilamentUser, MustVerifyEmail
     use TwoFactorAuthenticatable;
     use CanChat;
     use HasAddress;
-
+    use DoctorTrait;
 
     public function patients(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

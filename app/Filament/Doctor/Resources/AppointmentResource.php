@@ -2,12 +2,14 @@
 
 namespace App\Filament\Doctor\Resources;
 
+use App\Enums\AppointmentStatus;
 use App\Enums\AuthRoles;
 use App\Filament\Doctor\Resources\AppointmentResource\Pages;
 use App\Filament\Doctor\Resources\AppointmentResource\RelationManagers;
 use App\Models\Appointment;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -24,7 +26,9 @@ class AppointmentResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where("doctor_id", "=", auth()->user()->id);
+        return parent::getEloquentQuery()
+                        ->where("doctor_id", "=", auth()->user()->id)
+                        ->where('status', AppointmentStatus::ACCEPTED);
     }
 
     public static function form(Form $form): Form
@@ -100,6 +104,7 @@ class AppointmentResource extends Resource
             'index' => Pages\ListAppointments::route('/'),
             'create' => Pages\CreateAppointment::route('/create'),
             'edit' => Pages\EditAppointment::route('/{record}/edit'),
+            'requests' => Pages\AppointmentRequests::route('/requests')
         ];
     }
 }

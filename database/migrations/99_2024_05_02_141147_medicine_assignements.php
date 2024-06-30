@@ -14,19 +14,21 @@ return new class extends Migration
         Schema::create("medicine_assignements", function(Blueprint $table){
             $table->id();
 
-            $table->foreignId('medicine')
+            $table->foreignId('treatment_id')
+                ->references('id')
+                ->on('treatments');
+
+            $table->foreignId('medicine_id')
                 ->references('id')
                 ->on('medicines');
 
-            $table->foreignId("doctor_id")
-                ->references("id")
-                ->on("doctors");
-
-            $table->foreignId('patient_id')
-                ->references("id")
-                ->on("patients");
+            $table->string('treatment_reason');
 
             $table->tinyInteger("quantity", unsigned: true);
+
+            $table->tinyInteger('times_in_day', unsigned: true);
+
+            $table->enum('times', \App\Enums\Base\MedicineTime::values());
 
             $table->timestamps();
         });

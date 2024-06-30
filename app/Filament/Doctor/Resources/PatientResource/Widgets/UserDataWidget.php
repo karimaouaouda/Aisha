@@ -7,6 +7,8 @@ use Filament\Widgets\Widget;
 
 class UserDataWidget extends Widget
 {
+    protected static bool $isLazy = false;
+
     protected static string $view = 'filament.doctor.resources.patient-resource.widgets.user-data-widget';
 
     public $patient_id;

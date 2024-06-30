@@ -35,28 +35,6 @@ class PatientStates extends ViewRecord
         ];
     }
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Action::make('select day')
-                ->form([
-                    DateTimePicker::make('starthere')
-                        ->label('start from'),
-
-                    DateTimePicker::make('end')
-                        ->id('end')
-                        ->label('stop date'),
-                ])->action(function(Form $form){
-                    $data = [];
-                    foreach ($form->getComponents() as $component){
-                        $data[$component->getStatePath(false)] = $component->getState();
-                    }
-
-                    dd(request()->url());
-                })
-        ];
-    }
-
     protected function getHeaderWidgets(): array
     {
         return [

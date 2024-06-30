@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     'provide interface to the user to enter his IOT Data' => true,
     'add the functionality of messaging through message button' => false,

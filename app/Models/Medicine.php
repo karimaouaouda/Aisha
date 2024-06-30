@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Models\Auth\Patient;
+use App\Models\Base\Treatment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Medicine extends Model
 {
@@ -19,24 +21,9 @@ class Medicine extends Model
         'quantity'
     ];
 
-
-    public function doctors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function treatments(): BelongsToMany
     {
-        request();
-        return $this->belongsToMany(
-            Patient::class,
-            "medicine_assignements",
-            'medicine',
-            'doctor_id');
-    }
-
-    public function patients(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany(
-            User::class,
-            "medicine_assignements",
-            'medicine_id',
-            'patient_id');
+        return $this->belongsToMany(Treatment::class, 'medicine_assignements');
     }
 
 }
