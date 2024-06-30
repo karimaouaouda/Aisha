@@ -3,6 +3,7 @@
 namespace App\Models\Auth;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Base\Treatment;
 use App\Models\Illness;
 use App\Models\IotData;
 use App\Models\MedicalReport;
@@ -131,14 +132,9 @@ class Patient extends Authenticatable implements FilamentUser
         return $panel->getId() == 'patient';
     }
 
-    public function treatments(): BelongsToMany
+    public function treatments(): HasMany
     {
-        return $this->belongsToMany(
-            Medicine::class,
-            'medicine_assignements',
-        'patient_id',
-            relatedPivotKey: 'medicine'
-        );
+        return $this->hasMany(Treatment::class);
     }
 
     public function doctors(): BelongsToMany

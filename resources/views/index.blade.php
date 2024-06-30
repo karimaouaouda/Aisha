@@ -478,8 +478,8 @@
                                     <div class="card border-0 border-bottom border-primary shadow-sm">
                                         <div class="card-body p-4 p-xxl-5">
                                             <h2 class="h4 mb-2">Basic</h2>
-                                            <h4 class="display-3 fw-bold text-primary mb-0">$50</h4>
-                                            <p class="text-secondary mb-4">USD / Month</p>
+                                            <h4 class="display-3 fw-bold text-primary mb-0">4999 <sup>DZD</sup></h4>
+                                            <p class="text-secondary mb-4">DZD / Month</p>
                                             <ul class="list-group list-group-flush mb-4">
                                                 <li class="list-group-item">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -537,8 +537,8 @@
                                         class="card border-0 border-bottom border-primary shadow-lg pt-md-4 pb-md-4 bsb-pricing-popular">
                                         <div class="card-body p-4 p-xxl-5">
                                             <h2 class="h4 mb-2">Pro</h2>
-                                            <h4 class="display-3 fw-bold text-primary mb-0">$149</h4>
-                                            <p class="text-secondary mb-4">USD / Month</p>
+                                            <h4 class="display-3 fw-bold text-primary mb-0">9999 <sup>DZD</sup></h4>
+                                            <p class="text-secondary mb-4">DZD / Month</p>
                                             <ul class="list-group list-group-flush mb-4">
                                                 <li class="list-group-item">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"

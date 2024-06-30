@@ -62,15 +62,31 @@ class PatientResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\Action::make('stats')
-                    ->label('stats')
-                    ->icon('heroicon-o-chart-pie')
-                    ->url(function(Model $record){
-                        return route('filament.doctor.resources.patients.stats', ['record' => $record->id]);
-                    }),
-                Tables\Actions\Action::make('chatting')
-                    ->label('chat')
-                    ->icon('heroicon-o-chat-bubble-oval-left')
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\Action::make('card')
+                        ->label('card')
+                        ->icon('heroicon-o-user')
+                        ->url(function(Model $record){
+                            return route('filament.doctor.resources.patients.card', ['record' => $record->id]);
+                        }),
+
+                    Tables\Actions\Action::make('stats')
+                        ->label('stats')
+                        ->icon('heroicon-o-chart-pie')
+                        ->url(function(Model $record){
+                            return route('filament.doctor.resources.patients.stats', ['record' => $record->id]);
+                        }),
+                    Tables\Actions\Action::make('chatting')
+                        ->label('chat')
+                        ->icon('heroicon-o-chat-bubble-oval-left'),
+
+                    Tables\Actions\Action::make('treatments')
+                        ->label('treatments')
+                        ->icon('heroicon-o-inbox-stack')
+                        ->url(function(Model $record){
+                            return route('filament.doctor.resources.patients.treatments', ['record' => $record->id]);
+                        }),
+                ])->label('actions'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

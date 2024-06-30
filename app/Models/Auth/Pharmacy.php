@@ -3,6 +3,7 @@
 namespace App\Models\Auth;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\HasAddress;
 use App\Traits\HaveCover;
 use Exception;
 use Filament\Models\Contracts\FilamentUser;

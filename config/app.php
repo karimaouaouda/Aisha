@@ -12,7 +12,6 @@ return [
     | other UI elements where an application name needs to be displayed.
     |
     */
-
     'name' => env('APP_NAME', 'Laravel'),
 
     'hugging_face_key' => env('HUGGING_FACE_API_KEY', null),
@@ -46,6 +45,19 @@ return [
             'api_key' => env('GEMINI_API_KEY')
         ]
     ],
+
+
+    'body_data' => [
+        'age' => 'age',
+        'height' => 'height',
+        'weight' => 'weight'
+    ],
+
+    'health_data' => [
+        'disease' => 'disease',
+        'symptom' => 'symptom'
+    ],
+
 
     /*
     |--------------------------------------------------------------------------

@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->tinyInteger('count', autoIncrement: false, unsigned: true);
-            $table->enum('method', [
-                'after', 'before', 'middle'
-            ]);
+            $table->tinyText('description');
+
+            $table->string('image')->nullable();
+
+            $table->float('price');
+
+            $table->integer('sold')->default(0);
+
             $table->timestamps();
         });
     }

@@ -16,9 +16,10 @@ class Medicine extends Model
 
     protected $fillable = [
         'name',
-        'count',
-        'method',
-        'quantity'
+        'description',
+        'sold',
+        'price',
+        'image'
     ];
 
     public function treatments(): BelongsToMany

@@ -94,4 +94,9 @@ trait PatientTrait
                                 ->get();
     }
 
+
+    public function completeProfile(){
+        return false;
+    }
+
 }

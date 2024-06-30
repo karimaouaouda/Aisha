@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="66882ee1-5871-4a34-946a-103e668f4f8f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mqtt-simulator/.idea/mqtt-simulator.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../public/images/aisha-ai.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.env" beforeDir="false" afterPath="$PROJECT_DIR$/../.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/analyzer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/analyzer.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Filament/Doctor/Resources/PatientResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Filament/Doctor/Resources/PatientResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Filament/Doctor/Resources/PatientResource/Pages/Treatments.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Filament/Doctor/Resources/PatientResource/Pages/Treatments.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Filament/Patient/Pages/Chat.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Filament/Patient/Pages/Chat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Filament/Patient/Resources/MedicineResource.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Filament/Patient/Resources/MedicineResource/Pages/CreateMedicine.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Filament/Patient/Resources/MedicineResource/Pages/EditMedicine.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Filament/Patient/Resources/MedicineResource/Pages/ListMedicines.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Filament/Patient/Resources/MedicineResource/Pages/View.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Filament/Patient/Resources/MedicineResource/RelationManagers/PatientsRelationManager.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Filament/Pharmacy/Resources/MedicineResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Filament/Pharmacy/Resources/MedicineResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Models/Auth/Patient.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Models/Auth/Patient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Models/Auth/Pharmacy.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Models/Auth/Pharmacy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Models/Base/Treatment.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Models/Base/Treatment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Models/Medicine.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Models/Medicine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Services/Ai/VoiceEmotionService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Services/Ai/VoiceEmotionService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database/migrations/4_2023_05_02_135940_create_medicines_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../database/migrations/4_2023_05_02_135940_create_medicines_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,12 +35,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2iSt2ZN7ejkYbD0paQrG2FqnDdm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,12 +50,15 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "<unknown>",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/laragon/www/aisha/analyzer/.venv/Scripts/python.exe",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -53,6 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1719495613214</updated>
       <workItem from="1719495615718" duration="391000" />
+      <workItem from="1719782175689" duration="5956000" />
     </task>
     <servers />
   </component>

@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-a{
+a {
     text-decoration: none;
     color: black;
 }
@@ -14,16 +14,16 @@ a{
 }
 
 
-.anim-300{
+.anim-300 {
     @apply duration-300 ease-in-out
 }
 
-.scroll-y{
+.scroll-y {
     @apply overflow-x-hidden overflow-y-auto
 }
 
-.message-wrapper{
-    @apply w-full h-fit pb-2  p-2 overflow-visible
+.message-wrapper {
+    @apply w-full h-fit pb-2 p-2 overflow-visible
 }
 
 /* width */
@@ -44,4 +44,14 @@ a{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     @apply bg-slate-500
+}
+
+.triangle-left {
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+
+    border-right: 40px solid rgb(241 245 249);
+    left: -40px;
 }

@@ -41,11 +41,13 @@ class VoiceEmotionService
         $process = Process::run($exec);
 
         try{
-            $fillings = (explode("\n", $process->output()))[3];
+            $output =  $process->output();
+            dd($output, $exec);
+            $fillings = (explode("\n",$output))[3];
         }catch (\ErrorException $e){
             return response()->json([
                 'status' => 'failed',
-                'message' => 'too long audio, audio must be greater then 2.5s'
+                'message' => 'too short audio, or unclear voice, audio must be greater then 2.5s'
             ]);
         }
 

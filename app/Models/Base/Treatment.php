@@ -17,6 +17,7 @@ class Treatment extends Model
     protected $fillable = [
         'doctor_id',
         'patient_id',
+        'treatment_reason'
     ];
 
 
