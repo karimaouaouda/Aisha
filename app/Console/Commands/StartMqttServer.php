@@ -26,12 +26,13 @@ class StartMqttServer extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'this command will launch the
+     mqtt subscribe function wich will listen to mqtt messages through mosquitto';
 
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
 
         $mqtt = MQTT::connection('public');

@@ -16,7 +16,7 @@
 
         @foreach ($messages as $message)
         <div class="message-wrapper">
-            <div class="message flex relative gap-2" x-data="{'content' : '{{$message->content}}'}">
+            <div class="message flex relative gap-2" x-data="{'content' : `{{$message->content}}`}">
                 <div class="chat-pic h-10 w-10 rounded-full overflow-hidden border-sky-500 border-2">
                     <img src="{{ cache('profile_picture') ?? asset('media/ai1.jfif') }}" class="w-full h-full" alt="">
                 </div>
@@ -49,7 +49,7 @@
 
 
         <div class="message-wrapper">
-            <div class="message flex flex-row-reverse relative gap-2" x-data="{'content' : '{{ $message->gpt_response }}'}">
+            <div class="message flex flex-row-reverse relative gap-2" x-data="{'content' : `{{ strip_html_tags(formatNormalMessage($message->gpt_response))  }}`}">
                 <div class="chat-pic h-10 w-10 rounded-full overflow-hidden border-sky-500  border-2">
                     <img src="{{cache('ai_profile_picture')  ?? asset('media/ai1.jfif')}}" class="w-full h-full" alt="">
                 </div>
@@ -62,7 +62,7 @@
                     </button>
 
                 </div>
-                <div x-data="{open : false}" class="dropdown relative top-2 text-white text-xl cursor-pointer">
+                <div x-data="{'open' : false}" class="dropdown relative top-2 text-white text-xl cursor-pointer">
                     <i @click="open = !open" class="toggler bi bi-three-dots-vertical"></i>
                     <div x-transition x-show="open" class="menu absolute top-6 left-2 h-auto bg-slate-100 overflow-hidden py-2 rounded-md z-50">
                         <ul class="text-black text-sm font-semibold flex flex-col gap-1">
@@ -94,9 +94,12 @@
         <select name="" id="mic-select" hidden></select>
         <span id="progress"></span>
         <div class="inner-form w-full h-full overflow-hidden rounded-md pl-4 relative">
+            <div id="wavesurver" class="hidden">
+
+            </div>
             <input type="text" id="formInput" placeholder="tap message ...." class="bg-transparent border-none outline-none w-full h-full focus:ring-0">
         </div>
-        <div :class="{'hidden' : !sending}" class="w-6 mr-4 rounded-full h-6 bg-trabsparent border-b-2 border-t-2 border-sky-700 animate-spin">
+        <div :class="{'hidden' : !sending}"  class="w-6 mr-4 rounded-full h-6 bg-trabsparent border-b-2 border-t-2 border-sky-700 animate-spin">
 
         </div>
         <i :class="{'hidden' : sending}" @click="send()" id="send" class="bi bi-send w-14 flex items-center justify-center text-xl hover:text-sky-700 cursor-pointer"></i>

@@ -7,6 +7,7 @@ use App\Actions\Filament\Auth\Patient\Register;
 use App\Actions\Filament\Providers\AvatarProvider;
 use App\Filament\Patient\Pages\Chat;
 use App\Filament\Patient\Widgets\HealthState;
+use App\Filament\Shared\Pages\Conversation;
 use App\Filament\Shared\Pages\Settings;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -56,7 +57,8 @@ class PatientPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Patient/Pages'), for: 'App\\Filament\\Patient\\Pages')
             ->pages([
                 Chat::class,
-                Settings::class
+                Settings::class,
+                Conversation::class
             ])
             ->discoverWidgets(in: app_path('Filament/Patient/Widgets'), for: 'App\\Filament\\Patient\\Widgets')
             ->widgets([

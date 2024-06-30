@@ -2,6 +2,7 @@
 
 namespace App\Services\Ai;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Process;
 
@@ -19,13 +20,13 @@ class VoiceEmotionService
         ];
     }
 
-    public static function process(UploadedFile $file): array
+    public static function process(UploadedFile $file): array|JsonResponse
     {
         $static = new static;
 
         return $static->processAudio($file);
     }
-    public function processAudio(UploadedFile $audio): array
+    public function processAudio(UploadedFile $audio): \Illuminate\Http\JsonResponse|array
     {
         $path = $this->store($audio);
 
@@ -39,7 +40,14 @@ class VoiceEmotionService
 
         $process = Process::run($exec);
 
-        $fillings = (explode("\n", $process->output()))[3];
+        try{
+            $fillings = (explode("\n", $process->output()))[3];
+        }catch (\ErrorException $e){
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'too long audio, audio must be greater then 2.5s'
+            ]);
+        }
 
         return [
             "path" => $path,

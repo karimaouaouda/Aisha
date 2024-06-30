@@ -95,13 +95,25 @@
                             </button>
                         @endif
 
-                        <a href="{{ auth('patient')->check() ? route('filament.patient.pages.dashboard') : route('filament.patient.auth.login') }}"
+                        @if( ($guard = is_anyone_auth()) === false )
+                        <a href="{{ route('filament.patient.auth.login') }}"
                             class="rounded-full h-10 flex items-center text-sm uppercase px-4 bg-slate-200 text-gray-800">
                             <i class="bi h-full flex items-center bi-chat text-md mr-1"></i>
                             <span>
                                 Message
                             </span>
                         </a>
+                        @else
+
+                        <a href="{{ route('conversation.start', ['user' => $doctor->id]) }}"
+                            class="rounded-full h-10 flex items-center text-sm uppercase px-4 bg-slate-200 text-gray-800">
+                            <i class="bi h-full flex items-center bi-chat text-md mr-1"></i>
+                            <span>
+                                Message
+                            </span>
+                        </a>
+
+                        @endif
 
                     </div>
 

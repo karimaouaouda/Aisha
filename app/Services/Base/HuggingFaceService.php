@@ -45,12 +45,14 @@ abstract class HuggingFaceService implements HuggingFaceServiceInterface
 
         try{
             $response = Http::withHeaders($this->headers)
-                ->retry(3)
+                ->retry(5)
                 ->post($this->endpoint , $payload);
         }catch(ConnectionException|RequestException $e){
-            return response()->json([
-                'message' => 'connection failed : ' . $e->getMessage(),
-            ]);
+            dd( $e->getMessage(), $this->api_key );
+//            response()->json([
+//                'message' => 'connection failed : ' . $e->getMessage(),
+//            ]);
+
         }
 
         return $response;

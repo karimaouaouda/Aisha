@@ -51,11 +51,19 @@ window.Alpine.data('listenButtonData', function () {
     return {
         listen(e) {
 
-            const utterThis = new SpeechSynthesisUtterance(this.$data.content);
+            try{
+                const utterThis = new SpeechSynthesisUtterance(this.$data.content);
 
-            utterThis.voice = voice
+                utterThis.voice = voice
 
-            synth.speak(utterThis);
+                synth.speak(utterThis);
+            }catch(err){
+                Swal.fire({
+                    icon : 'error',
+                    title : 'listen failed',
+                    text : err
+                })
+            }
         }
     }
 })
@@ -70,6 +78,9 @@ window.Alpine.data('formData', () => {
 
         send() {
             let content = document.getElementById('formInput').value
+
+
+ 
 
             this.sending = true;
 
@@ -107,7 +118,14 @@ window.Alpine.data('formData', () => {
                     }
                 })
                     .then(function (response) {
-                        console.log(response);
+                        if(response.data.status == 'failed'){
+                            Swal.fire({
+                                icon : 'error',
+                                title : 'error occured',
+                                text : response.data.message
+                            })
+                            throw new Error('error occured')
+                        }
 
                         let gptresponse = response.data.content
 
@@ -117,6 +135,8 @@ window.Alpine.data('formData', () => {
                         container.remove()
 
                         mainContainer.innerHTML += textMessageTemplate(gptresponse, true)
+
+                        globalBlob = null;
 
                         mainContainer.scrollTo({
                             top: mainContainer.scrollHeight
@@ -146,6 +166,7 @@ window.Alpine.data('formData', () => {
 
         record: function () {
             this.isRecording = true
+            console.log(record)
 
             try {
                 recognition.start();
@@ -161,7 +182,7 @@ window.Alpine.data('formData', () => {
 })
 
 // declarations
-let wavesurfer, record
+var wavesurfer, record
 let scrollingWaveform = false
 
 //initialization of the record process
@@ -172,7 +193,7 @@ const createWaveSurfer = () => {
     }
 
     wavesurfer = WaveSurfer.create({
-        container: '#form44',
+        container: '#wavesurver',
         waveColor : '#f5f5f5',
         height : '100%',
     })
@@ -183,7 +204,6 @@ const createWaveSurfer = () => {
 
 
     record.on('record-end', (blob) => {
-
         progress.textContent = ''
         recognition.stop()
         let waveblob = webmToWav(blob, function (wavblob) {
@@ -191,10 +211,6 @@ const createWaveSurfer = () => {
             globalBlob = wavblob
         })
 
-    })
-
-    record.on('record-progress', (time, e) => {
-        updateProgress(time, e)
     })
 }
 
@@ -212,43 +228,36 @@ togglerButton.onclick = () => {
 }
 
 togglerButton.onclick = () => {
-    if (record.isRecording() || record.isPaused()) {
-        record.stopRecording()
-        return
+    if(record){
+        if (record.isRecording() || record.isPaused()) {
+            record.stopRecording()
+            return
+        }
+    
+        // reset the wavesurfer instance
+    
+        // get selected device
+        const deviceId = micSelect.value
+        record.startRecording({ deviceId })
     }
-
-    // reset the wavesurfer instance
-
-    // get selected device
-    const deviceId = micSelect.value
-    record.startRecording({ deviceId })
 }
 
 const micSelect = document.querySelector('#mic-select')
 
-{
-    // Mic selection
-    RecordPlugin.getAvailableAudioDevices().then((devices) => {
-        let i = 0;
-        devices.forEach((device) => {
+// Mic selection
+RecordPlugin.getAvailableAudioDevices().then((devices) => {
+    devices.forEach((device) => {
 
-            const option = document.createElement('option')
-            /* if (i == 1) {
-                option.selected = true
-            } */
-            option.value = device.deviceId
-            option.text = device.label || device.deviceId
-            micSelect.appendChild(option)
-        })
+        const option = document.createElement('option')
+        /* if (i == 1) {
+            option.selected = true
+        } */
+        option.value = device.deviceId
+        option.text = device.label || device.deviceId
+        micSelect.appendChild(option)
     })
-}
+})
 
-//set the timein the screen
-const progress = document.querySelector('#progress')
-const updateProgress = (time, e) => {
-    console.info(time, e)
-    // time will be in milliseconds, convert it to mm:ss format
-}
-
+console.log('reachs')
 createWaveSurfer()
-
+console.log(record)

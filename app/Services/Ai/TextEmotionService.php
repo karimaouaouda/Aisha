@@ -3,21 +3,32 @@
 namespace App\Services\Ai;
 
 use App\Services\Base\HuggingFaceService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Config;
 
 class TextEmotionService extends HuggingFaceService
 {
 
-    public static function classify(string $prompt): array|string
+    public static function classify(string $prompt): array|string|JsonResponse
     {
         $static = new static;
 
         return $static->classifyText($prompt);
     }
 
-    public function classifyText(string $prompt) : string|array
+    public function classifyText(string $prompt) : string|array|JsonResponse
     {
-        return $this->parseEmotions($this->requestData($prompt)->body());
+        try{
+            return $this->parseEmotions($this->requestData($prompt)->body());
+        }catch (\Exception $e){
+            dd($e);
+            return $this->classifyText($prompt);
+//            return response()->json([
+//                'status' => 'failed',
+//                'message' => 'our Model is loading, try resend the same message'
+//            ]);
+        }
+
     }
 
     protected function parseEmotions(string $array): array

@@ -26,9 +26,17 @@ Route::resource('articles', ArticleController::class);
 
 
 Route::controller(MainController::class)
-    ->name('discover.')
     ->group(function(){
-        Route::get('/discover', 'index')->name('index');
+
+        Route::name('discover.')
+            ->group(function(){
+                Route::get('/discover', 'index')->name('index');
+            });
+
+        Route::name('conversation.')
+            ->group(function(){
+                Route::get('/conversations/{user}/start', 'startConversation')->name('start');
+            });
     });
 Route::controller(ArticleController::class)
     ->name('articles.')
@@ -85,13 +93,7 @@ Route::middleware([AuthSetter::class])->group(function () {
         return view('test.page');
     });
     Route::get('/test', function () {
-        $process = Artisan::call('analyzer:run', [
-            '--audio' => base_path('\storage\app\public\audio\661fe8c165407.wav')
-        ]);
-
-        $output = Artisan::output();
-
-        return $output;
+        dd(auth('patient')->user()->reformulateMessage('i want to gou out', 'sad'));
     });
 
     Route::get('/test-chat', function () {

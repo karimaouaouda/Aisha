@@ -41,7 +41,7 @@ export var audioMessageTemplate = (blob) => {
 }
 
 export var textMessageTemplate = (content, recived = false) => {
-    return `<div x-data={'text' : ${content}} class="message-wrapper">
+    return `<div x-data="{'text' : \`${content}\`}" class="message-wrapper">
     <div class="message flex ${recived ? "flex-row-reverse" : ""} relative gap-2">
         <div x-data="{}" class="chat-pic h-10 w-10 rounded-full overflow-hidden border-sky-500 border-2">
             <img src="${ recived ? JSON.parse(document.querySelector('#data').dataset.json).ai_pic : JSON.parse(document.querySelector('#data').dataset.json).profile_photo_url }" class="w-full h-full" alt="">
@@ -63,7 +63,7 @@ export var textMessageTemplate = (content, recived = false) => {
                         <a href="#" class="w-full h-full">edit & resend</a>
                     </li>
                     <li class="hover:bg-slate-200 whitespace-nowrap p-1">
-                        <button onclick="copy(${content})" class="w-full h-full">copy</button>
+                        <button onclick="copy(\` ${content} \`)" class="w-full h-full">copy</button>
                     </li>
                 </ul>
             </div>

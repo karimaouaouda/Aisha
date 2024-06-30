@@ -8,10 +8,12 @@ use App\Models\IotData;
 use App\Models\MedicalReport;
 use App\Models\Medicine;
 use App\Models\Message;
+use App\Models\UserData;
 use App\Traits\CanChat;
 use App\Traits\HasAddress;
 use App\Traits\HaveCover;
 use App\Traits\Patient\CanMedicalFollow;
+use App\Traits\PatientTrait;
 use Exception;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -38,6 +40,7 @@ class Patient extends Authenticatable implements FilamentUser
     use Notifiable;
     use TwoFactorAuthenticatable;
     use CanChat;
+    use PatientTrait;
     use CanMedicalFollow;
     use HasAddress;
 
@@ -113,6 +116,11 @@ class Patient extends Authenticatable implements FilamentUser
     public function iot_data(): HasMany
     {
         return $this->hasMany(IotData::class);
+    }
+
+    public function user_data(): HasMany
+    {
+        return $this->hasMany(UserData::class);
     }
 
     /**

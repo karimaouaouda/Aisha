@@ -27,8 +27,12 @@ class PostAnalytics extends Page
     protected function getHeaderWidgets(): array
     {
         return [
-            PatientResource\Widgets\DiseasesStats::make(),
-            PatientResource\Widgets\HeartRateView::make(),
+            PatientResource\Widgets\DiseasesStats::make([
+                'patient' => $this->record
+            ]),
+            PatientResource\Widgets\HeartRateView::make([
+                'patient' => $this->record
+            ]),
         ];
     }
 

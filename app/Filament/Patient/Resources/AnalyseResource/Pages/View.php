@@ -19,6 +19,14 @@ class View extends ManageRecords
         return 2;
     }
 
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\CreateAction::make('upload data')
+                ->label('upload data')
+        ];
+    }
+
 
     protected function getHeaderWidgets(): array
     {

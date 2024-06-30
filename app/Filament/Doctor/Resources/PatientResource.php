@@ -96,7 +96,8 @@ class PatientResource extends Resource
             'stats.iot' => Pages\IOTDataVisualization::route('{record}/stats/iot'),
             'treatments' => Pages\Treatments::route('/{record}/treatments'),
             'requests' => Pages\MedicalRequests::route('requests'),
-            'post_analytics' => Pages\PostAnalytics::route('/{record}/analytics')
+            'post_analytics' => Pages\PostAnalytics::route('/{record}/analytics'),
+            'disease' => Pages\Disease::route('/{record}/analytics/{disease}/details')
         ];
     }
 }

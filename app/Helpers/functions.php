@@ -19,6 +19,13 @@ if( !function_exists('formatNormalMessage') ){
 
         $convertedText = preg_replace($pattern, $replacement, $convertedText);
 
+
+        $pattern = '/```(.*?)```/s';
+
+        $replacement = '<div class="p-2 bg-slate-700 rounded-md text-white font-semiblod">$1</div>';
+
+        $convertedText = preg_replace($pattern, $replacement, $convertedText);
+
         return $convertedText;
     }
 }
@@ -83,9 +90,42 @@ if( ! function_exists('is_anyone_auth') ){
 
         foreach ($guards as $guard){
             if( auth($guard)->check() ){
-                return true;
+                return $guard;
             }
         }
         return false;
+    }
+}
+
+
+if( ! function_exists('formatGptPrompt') ){
+    function formatGptPrompt(\App\Models\Auth\Patient $patient) : string
+    {
+
+        $patient_data  = [
+            'iot' => $patient->iot_data,
+            'user' => $patient->user_data()
+                ->whereBetween(
+                    'created_at',
+                    [now()->subDay(), now()]
+                )
+            ->get()
+        ];
+
+        dd($patient_data['user']);
+
+    }
+
+
+}
+
+if(  !function_exists('strip_html_tags') ){
+    function strip_html_tags($text): array|string|null
+    {
+        // Remove HTML tags using a regular expression
+        // Alternatively, to keep some tags like <b>, <i>, <u>, you can modify the pattern as follows:
+        // $text = preg_replace('/<(?!\/?(b|i|u|br)\b)[^>]*>/', '', $text);
+
+        return preg_replace('/<[^>]*>/', '', $text);
     }
 }

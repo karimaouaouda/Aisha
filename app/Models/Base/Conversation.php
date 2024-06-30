@@ -37,6 +37,11 @@ class Conversation extends Model
         return$this->morphTo('target_conversationable');
     }
 
+    public function sender(): MorphTo
+    {
+        return$this->morphTo('source_conversationable');
+    }
+
     public function getOtherParticipant(Authenticatable $user){
         if(
             $this->target_conversationable_id == $user->id &&

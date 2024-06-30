@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Actions\Filament\Auth\Doctor\Profile;
 use App\Actions\Filament\Auth\Doctor\Register;
+use App\Filament\Shared\Pages\Conversation;
 use App\Filament\Shared\Pages\Settings;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -54,7 +55,8 @@ class DoctorPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Doctor/Pages'), for: 'App\\Filament\\Doctor\\Pages')
             ->pages([
                 Pages\Dashboard::class,
-                Settings::class
+                Settings::class,
+                Conversation::class
             ])
             ->viteTheme('resources/css/app.css', 'build')
             ->discoverWidgets(in: app_path('Filament/Doctor/Widgets'), for: 'App\\Filament\\Doctor\\Widgets')

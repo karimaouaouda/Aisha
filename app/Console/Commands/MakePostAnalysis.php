@@ -7,6 +7,7 @@ use App\Models\Auth\Patient;
 use App\Services\Ai\EntityRecognitionService;
 use App\Services\Ai\GeminiService;
 use App\Services\Ai\PostAnalysisService;
+use App\Services\Logger;
 use Illuminate\Console\Command;
 use Psr\Http\Client\ClientExceptionInterface;
 
@@ -52,17 +53,27 @@ class MakePostAnalysis extends Command
      */
     private function makePostAnalyseFor(Patient $patient): bool
     {
+        $channel = ( new Logger('/logs/post', 'post', $patient->id . '_') )->newChannel();
 
-        $messages = $patient->messages()->get(['id', 'content']);
+        $channel->addToContent("post analytic for patient : {$patient->name} #{$patient->id}");
+
+        $lastAnalysis  = $patient->lastPostAnalysis(); //get the last analysis
+
+        $from_message = $lastAnalysis->count() !== 0 ? $lastAnalysis->first()->stop_at_message : $messages->first()->id;
+
+
+        $messages = $patient->messages()
+                            ->where('id', '>', $from_message - 1)
+                            ->get(['id', 'content']);
+
+
 
         if( $messages->isEmpty() ){
             $this->output->warning('user have no messages');
+            $channel->addToContent('user have no messages');
             return true;
         }
 
-        $from_message = $messages->first()->id;
-
-        $to_message = $messages->last()->id;
 
         $combinedMessage = $messages->implode('content', '. ');
 
@@ -93,9 +104,9 @@ class MakePostAnalysis extends Command
               the user we're going to need you to make useful sentence from them without missing
               anything in the sentence from the provided information from the array : " . $geminiEntriesAsText . " it's important to note that the sentence that you will provide will be sent to something to disease model powered by AI so if that might help you put it in Easy form to be detected do it";
 
-            $summarizedText = GeminiService::send($prompt);
+            $summarizedText = GeminiService::send($prompt, true);
 
-            $geminiSummarizedText = GeminiService::send($geminiPrompt);
+            $geminiSummarizedText = GeminiService::send($geminiPrompt, true);
 
             $geminiDiseases = PostAnalysisService::detectFromText($geminiSummarizedText);
 
