@@ -51,17 +51,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-        URL::forceScheme('https');
-
-        Livewire::setScriptRoute(function ($handle) {
-            return Route::get(Config::get('livewire.script_route', 'aisha/public/livewire/livewire.js'), $handle)
-                        ->middleware('web');
-        });
-
-        Livewire::setUpdateRoute(function($handle){
-            return Route::post(Config::get('livewire.update_route', 'aisha/public/livewire/update'), $handle)
-                        ->middleware('web');
-        });
+        // URL::forceScheme('https');
 
         $this->app->singleton(Logger::class, function(Application $app){
             return new Logger('logs');

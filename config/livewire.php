@@ -15,8 +15,8 @@ return [
     | so do the same thing for update
     */
 
-    'script_route' => 'aisha/public/livewire/livewire.js',
-    'update_route' => 'aisha/public/livewire/update',
+    'script_route' => 'livewire/livewire.js',
+    'update_route' => 'livewire/update',
 
     /*
     |---------------------------------------------------------------------------
